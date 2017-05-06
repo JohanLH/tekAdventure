@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 14:14:56 2017 johan
-** Last update Fri May  5 15:35:10 2017 johan
+** Last update Sat May  6 14:52:49 2017 johan
 */
 
 #include <stdlib.h>
@@ -32,7 +32,7 @@ static t_node	*parse_out(t_node *file, int *line, t_map *map)
       *line += 1;
       node = node->next;
     }
-  my_printf(1, "\t[Adding out end]\n");
+  my_printf(1, "\t[Adding out done]\n");
   return (node);
 }
 
@@ -56,7 +56,7 @@ static t_node	*parse_link(t_node *file, int *line, t_map *map)
       node = node->next;
       *line += 1;
     }
-  my_printf(1, "\t[Adding link end]\n");
+  my_printf(1, "\t[Adding link done]\n");
   return (node);
 }
   
@@ -85,7 +85,7 @@ static t_node	*parse_room(t_node *file, int *line, t_map *map)
       *line += 1;
       node = node->next;
     }
-  my_printf(1, "\t[Adding room end]\n");
+  my_printf(1, "\t[Adding room done]\n");
   return (node);
 }
 
@@ -120,6 +120,7 @@ t_node		*parse_graph(t_node *file, int *line, t_map *map)
   t_node	*node;
   
   node = file->next;
+  *line += 1;
   my_printf(1, "Start parsing graph:\n");
   while (my_strcmp(node->data, END_PARSING) != 0)
     {
@@ -128,5 +129,6 @@ t_node		*parse_graph(t_node *file, int *line, t_map *map)
       *line += 1;
       node = node->next;
     }
+  my_printf(1, "Parsing graph done\n");
   return (node);
 }

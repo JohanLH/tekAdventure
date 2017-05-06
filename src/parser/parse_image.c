@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 20:24:55 2017 johan
-** Last update Fri May  5 12:39:03 2017 johan
+** Last update Fri May  5 22:22:33 2017 johan
 */
 
 #include "printf.h"
@@ -73,6 +73,7 @@ t_node		*parse_image(t_node *file, t_image *image, int *line)
   my_printf(1, "\tStart parsing image:\n");
   if ((fct_parser = init_image_function()) == NULL)
     return (NULL);
+  *line += 1;
   while (my_strcmp(node->data, END_PARSING) != 0)
     {
       if (parse_image2(node->data, image, fct_parser, *line))

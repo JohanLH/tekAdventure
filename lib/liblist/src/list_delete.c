@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 14:42:32 2017 johan
-** Last update Tue May  2 15:47:42 2017 johan
+** Last update Fri May  5 21:04:06 2017 johan
 */
 
 #include <stdlib.h>
@@ -33,10 +33,13 @@ void		list_delete_all(t_root *root)
 {
   t_node	*node;
 
-  while (root->first)
+  if (root != NULL)
     {
-      node = root->first;
-      list_delete_elem(root, node);
+      while (root->first)
+	{
+	  node = root->first;
+	  list_delete_elem(root, node);
+	}
+      free(root);
     }
-  free(root);
 }

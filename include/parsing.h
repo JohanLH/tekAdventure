@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 16:53:56 2017 johan
-** Last update Fri May  5 16:08:50 2017 johan
+** Last update Fri May  5 21:01:55 2017 johan
 */
 
 #ifndef PARSING_H_
@@ -19,6 +19,7 @@
 
 # define END_PARSING "[END]"
 # define IMAGE_PARSING "[IMAGE]"
+# define MAP_PARSING "[MAP]"
 # define GRAPH_PARSING "[GRAPH]"
 # define ROOM_PARSING "[ROOM]"
 # define LINK_PARSING "[LINK]"
@@ -83,6 +84,7 @@ t_root		*parse_file(char *);
 
 t_node		*parse_image(t_node *, t_image *, int *);
 t_node		*parse_graph(t_node *, int *, t_map *);
+t_node		*parse_map(t_map *, t_node *, int *);
 
 int		load_image(t_image *, char *, int);
 int		load_position(t_image *, char *, int);

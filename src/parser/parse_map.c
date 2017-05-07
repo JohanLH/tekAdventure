@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 15:44:47 2017 johan
-** Last update Sat May  6 14:51:51 2017 johan
+** Last update Sun May  7 00:05:51 2017 Johan Lhour
 */
 
 #include <stdlib.h>
@@ -25,17 +25,14 @@ static t_node	*parse_data_map(t_map *map, t_node *node, int *line)
 {
   if (my_strcmp(node->data, IMAGE_PARSING) == 0)
     {
-      if (map->is_image)
-	return (NULL);
-      if (!(node = parse_image(node, &map->image, line)))
+      if (!(node = parse_image(node, &map->image, line))
+	  || map->is_image)
 	return (NULL);
       map->is_image = 1;
     }
   else if (my_strcmp(node->data, GRAPH_PARSING) == 0)
     {
-      if (map->is_graph)
-	return (NULL);
-      if (!(node = parse_graph(node, line, map)))
+      if (!(node = parse_graph(node, line, map)) || map->is_graph)
 	return (NULL);
       map->is_graph = 1;
     }
@@ -61,5 +58,8 @@ t_node		*parse_map(t_map *map, t_node *file, int *line)
       *line += 1;
       node = node->next;
     }
+  if (map->is_image == 0 || map->is_graph == 0
+      || map->graph_enn == NULL || map->graph == NULL)
+    return (NULL);
   return (node);
 }

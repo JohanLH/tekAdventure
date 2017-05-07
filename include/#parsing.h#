@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 16:53:56 2017 johan
-** Last update Sun May  7 00:12:55 2017 Johan Lhour
+** Last update Sat May  6 23:55:02 2017 Johan Lhour
 */
 
 #ifndef PARSING_H_
@@ -69,6 +69,12 @@ typedef	struct	s_player
   int		is_image;
   int		is_postion;
 }		t_player;
+
+typedef struct	s_png
+{
+  t_image	image;
+  t_image	text;
+}		t_png;
 
 typedef	struct	s_game
 {

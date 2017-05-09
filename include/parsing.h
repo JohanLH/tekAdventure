@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 16:53:56 2017 johan
-** Last update Sun May  7 00:12:55 2017 Johan Lhour
+** Last update Tue May  9 16:56:59 2017 johan
 */
 
 #ifndef PARSING_H_
@@ -24,7 +24,11 @@
 # define ROOM_PARSING "[ROOM]"
 # define LINK_PARSING "[LINK]"
 # define OUT_PARSING "[OUT]"
+# define PLAYER_PARSING "[PLAYER]"
+# define OBJ_PARSING "[OBJET]"
 # define SPAWN_PARSING "[SPAWN]"
+# define ANIM_PARSING "[ANIMATION]"
+# define ACTION_PARSING "[ACTION]"
 
 # define ERROR_PARSING "Error while parsing file at line"
 
@@ -34,6 +38,12 @@
 # define IMAGE_INCRE_SCALE "incre-scale"
 # define IMAGE_MUSIC "music"
 # define IMAGE_DIMENSION "dimension"
+
+# define ACTION_TYPE "type"
+# define ACTION_INTERACTION "interaction"
+
+# define INTERACTION_ON "on"
+# define INTERACTION_OFF "off"
 
 typedef struct	s_image
 {
@@ -52,6 +62,22 @@ typedef struct	s_parser
   int		(*parser_function) (t_image *, char *, int);
 }		t_parser;
 
+typedef struct	s_anim
+{
+  char		*type;
+  int		interaction;
+  int		attrib;
+  t_image	*image;
+}		t_anim;
+
+typedef struct	s_obj
+{
+  t_anim	anim;
+  t_image	image;
+  int		is_img;
+  int		is_anim;
+}		t_obj;
+
 typedef struct	s_map
 {
   t_image	image;
@@ -63,11 +89,11 @@ typedef struct	s_map
 
 typedef	struct	s_player
 {
-  t_image	player;
+  t_image	image;
   t_node	*postion;
   char		*node;
   int		is_image;
-  int		is_postion;
+  int		is_position;
 }		t_player;
 
 typedef	struct	s_game
@@ -75,7 +101,8 @@ typedef	struct	s_game
   t_map		map;
   t_player	player;
   t_root	*object;
-  t_root	*png;
+  int		is_map;
+  int		is_player;
 }		t_game;
 
 t_root		*init_image_function();
@@ -84,6 +111,11 @@ t_root		*parse_file(char *);
 t_node		*parse_image(t_node *, t_image *, int *);
 t_node		*parse_graph(t_node *, int *, t_map *);
 t_node		*parse_map(t_map *, t_node *, int *);
+t_node		*parse_animation(t_node *, int *, t_anim *);
+t_node		*parse_obj(t_node *, int *, t_obj *);
+t_node		*parse_player(t_node *, int *, t_player *);
+
+t_game		*parse_list(t_root *);
 
 int		load_image(t_image *, char *, int);
 int		load_position(t_image *, char *, int);

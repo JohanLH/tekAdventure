@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 15:44:47 2017 johan
-** Last update Sun May  7 00:05:51 2017 Johan Lhour
+** Last update Tue May  9 17:03:39 2017 johan
 */
 
 #include <stdlib.h>
@@ -51,6 +51,7 @@ t_node		*parse_map(t_map *map, t_node *file, int *line)
   init_parse_map(map);
   node = file->next;
   *line += 1;
+  my_printf(1, "\tStart parsing map\n");
   while (my_strcmp(node->data, END_PARSING) != 0)
     {
       if ((node = parse_data_map(map, node, line)) == NULL)
@@ -59,7 +60,8 @@ t_node		*parse_map(t_map *map, t_node *file, int *line)
       node = node->next;
     }
   if (map->is_image == 0 || map->is_graph == 0
-      || map->graph_enn == NULL || map->graph == NULL)
+      || map->graph_end == NULL || map->graph == NULL)
     return (NULL);
+  my_printf(1, "\tParsing map done\n");
   return (node);
 }

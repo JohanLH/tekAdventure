@@ -5,7 +5,7 @@
 ## Login   <jack@epitech.net>
 ## 
 ## Started on  Mon Nov 28 12:48:01 2016 Jack
-## Last update Fri May  5 20:57:00 2017 johan
+## Last update Tue May  9 16:38:09 2017 johan
 ##
 
 SRCS	=	src/parser/init_image_function.c	\
@@ -15,6 +15,10 @@ SRCS	=	src/parser/init_image_function.c	\
 		src/parser/parse_file.c			\
 		src/parser/parse_graph.c		\
 		src/parser/parse_map.c			\
+		src/parser/parse_player.c		\
+		src/parser/parse_obj.c			\
+		src/parser/parse_animation.c		\
+		src/parser/parse_list.c			\
 		src/graph/find_elem_graph.c		\
 		src/graph/free_graph.c			\
 		src/graph/init_graph.c			\

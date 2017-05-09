@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 14:14:56 2017 johan
-** Last update Sat May  6 14:52:49 2017 johan
+** Last update Tue May  9 17:30:14 2017 johan
 */
 
 #include <stdlib.h>
@@ -20,10 +20,11 @@ static t_node	*parse_out(t_node *file, int *line, t_map *map)
   t_node	*node = NULL;
 
   node = file->next;
-  my_printf(1, "\t[Finding out]\n");
-  my_printf(1, "\t[Adding out]\n");
+  my_printf(1, "\t\t\t[Finding out]\n");
+  *line += 1;
   while (my_strcmp(node->data, END_PARSING) != 0)
     {
+      my_printf(1, "\t\t\t\t[Adding out]\n");
       if ((map->graph_end = find_elem_graph(map->graph, node->data)) == NULL)
 	{
 	  my_printf(2, "%s %d\n", ERROR_PARSING, *line);
@@ -32,7 +33,7 @@ static t_node	*parse_out(t_node *file, int *line, t_map *map)
       *line += 1;
       node = node->next;
     }
-  my_printf(1, "\t[Adding out done]\n");
+  my_printf(1, "\t\t\t[Adding out done]\n");
   return (node);
 }
 
@@ -41,11 +42,12 @@ static t_node	*parse_link(t_node *file, int *line, t_map *map)
   t_node	*node = NULL;
   char		**temp = NULL;
 
-  my_printf(1, "\t[Start parsing link]\n");
-  my_printf(1, "\t[Adding link]\n");
+  my_printf(1, "\t\t\t[Start parsing link]\n");
   node = file->next;
+  *line += 1;
   while (my_strcmp(node->data, END_PARSING) != 0)
     {
+      my_printf(1, "\t\t\t\t[Adding link]\n");
       if ((temp = my_str_to_wordtab(node->data, '-')) == NULL
 	  || my_strlen_wordtab(temp) != 2
 	  || add_data_graph(map->graph, temp[0], temp[1]))
@@ -56,7 +58,7 @@ static t_node	*parse_link(t_node *file, int *line, t_map *map)
       node = node->next;
       *line += 1;
     }
-  my_printf(1, "\t[Adding link done]\n");
+  my_printf(1, "\t\t\t[Adding link done]\n");
   return (node);
 }
   
@@ -67,12 +69,13 @@ static t_node	*parse_room(t_node *file, int *line, t_map *map)
   t_node	*node = NULL;
 
   node = file->next;
-  my_printf(1, "\t[Start parsing room]\n");
-  my_printf(1, "\t[Adding room]\n");
+  *line += 1;
+  my_printf(1, "\t\t\t[Start parsing room]\n");
   if ((map->graph = list_init(&graph_free_room)) == NULL)
     return (NULL);
   while (my_strcmp(node->data, END_PARSING) != 0)
     {
+      my_printf(1, "\t\t\t\t[Adding room]\n");
       if ((temp = my_str_to_wordtab(node->data, ':')) == NULL
 	  || my_strlen_wordtab(temp) != 2
 	  || (temp2 = my_str_to_wordtab(temp[1], ',')) == NULL
@@ -85,7 +88,7 @@ static t_node	*parse_room(t_node *file, int *line, t_map *map)
       *line += 1;
       node = node->next;
     }
-  my_printf(1, "\t[Adding room done]\n");
+  my_printf(1, "\t\t\t[Adding room done]\n");
   return (node);
 }
 
@@ -121,7 +124,7 @@ t_node		*parse_graph(t_node *file, int *line, t_map *map)
   
   node = file->next;
   *line += 1;
-  my_printf(1, "Start parsing graph:\n");
+  my_printf(1, "\t\tStart parsing graph:\n");
   while (my_strcmp(node->data, END_PARSING) != 0)
     {
       if ((node = parse_data_graph(node, line, map)) == NULL)
@@ -129,6 +132,6 @@ t_node		*parse_graph(t_node *file, int *line, t_map *map)
       *line += 1;
       node = node->next;
     }
-  my_printf(1, "Parsing graph done\n");
+  my_printf(1, "\t\tParsing graph done\n");
   return (node);
 }

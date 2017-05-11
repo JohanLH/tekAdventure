@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 16:40:06 2017 johan
-** Last update Fri May 12 00:56:41 2017 johan
+** Last update Fri May 12 01:18:13 2017 johan
 */
 
 #include "window.h"
@@ -24,6 +24,7 @@ static void	display_window(t_window *window)
       sfRenderWindow_drawSprite(window->window, obj->image.sprite, NULL);
       node = node->next;
     }
+  sfRenderWindow_drawSprite(window->window, window->game->player.image.sprite, NULL);
   if (window->cursor)
     {
       obj = (t_obj *)window->cursor->data;

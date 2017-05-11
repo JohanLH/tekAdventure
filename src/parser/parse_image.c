@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 20:24:55 2017 johan
-** Last update Thu May 11 19:44:39 2017 johan
+** Last update Fri May 12 01:09:55 2017 johan
 */
 
 #include "printf.h"
@@ -84,6 +84,8 @@ t_node		*parse_image(t_node *file, t_image *image, int *line)
     return (NULL);
   sfSprite_setPosition(image->sprite, image->pos);
   sfSprite_setScale(image->sprite, image->scale);
+  if (image->rect.width)
+    sfSprite_setTextureRect(image->sprite, image->rect);
   my_printf(1, "\t\tParsing image done\n");
   return (node);
 }

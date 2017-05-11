@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 16:33:45 2017 johan
-** Last update Thu May 11 19:19:16 2017 johan
+** Last update Fri May 12 01:11:12 2017 johan
 */
 
 #ifndef WINDOW_H_
@@ -13,8 +13,8 @@
 
 #include "parsing.h"
 
-# define WIDTH 980
-# define HEIGHT 720
+# define WIDTH 1280
+# define HEIGHT 780
 # define WINDOW_NAME "tekAventure"
 
 typedef struct		s_window
@@ -25,6 +25,7 @@ typedef struct		s_window
   sfMouseButton		mouse;
   sfVector2i		mouse_pos;
   t_game		*game;
+  t_node		*cursor;
 }			t_window;
 
 int			init_window(char *, t_window *);

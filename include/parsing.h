@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 16:53:56 2017 johan
-** Last update Thu May 11 19:36:17 2017 johan
+** Last update Thu May 11 20:05:00 2017 johan
 */
 
 #ifndef PARSING_H_
@@ -44,6 +44,8 @@
 
 # define INTERACTION_ON "on"
 # define INTERACTION_OFF "off"
+
+# define CURSOR "cursor"
 
 typedef struct	s_image
 {
@@ -115,6 +117,7 @@ t_node		*parse_map(t_map *, t_node *, int *);
 t_node		*parse_animation(t_node *, int *, t_anim *);
 t_node		*parse_obj(t_node *, int *, t_obj *);
 t_node		*parse_player(t_node *, int *, t_player *);
+t_node		*find_cursor(t_root *);
 
 t_game		*parse_list(t_root *);
 

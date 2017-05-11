@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 16:40:06 2017 johan
-** Last update Thu May 11 19:33:39 2017 johan
+** Last update Fri May 12 00:56:41 2017 johan
 */
 
 #include "window.h"
@@ -23,6 +23,11 @@ static void	display_window(t_window *window)
       obj = (t_obj *)node->data;
       sfRenderWindow_drawSprite(window->window, obj->image.sprite, NULL);
       node = node->next;
+    }
+  if (window->cursor)
+    {
+      obj = (t_obj *)window->cursor->data;
+      sfRenderWindow_drawSprite(window->window, obj->image.sprite, NULL);
     }
   sfRenderWindow_display(window->window);
 }

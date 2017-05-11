@@ -5,7 +5,7 @@
 ## Login   <jack@epitech.net>
 ## 
 ## Started on  Mon Nov 28 12:48:01 2016 Jack
-## Last update Tue May  9 16:38:09 2017 johan
+## Last update Tue May  9 21:51:19 2017 johan
 ##
 
 SRCS	=	src/parser/init_image_function.c	\
@@ -28,7 +28,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 CC	=	gcc
 
-NAME	=	tekAdventure
+NAME	=	tekadventure
 
 CFLAGS	+=	-I./include				\
 		-I./lib/libgnl/include			\

@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 14:14:56 2017 johan
-** Last update Tue May  9 17:30:14 2017 johan
+** Last update Tue May  9 21:48:49 2017 johan
 */
 
 #include <stdlib.h>
@@ -80,6 +80,7 @@ static t_node	*parse_room(t_node *file, int *line, t_map *map)
 	  || my_strlen_wordtab(temp) != 2
 	  || (temp2 = my_str_to_wordtab(temp[1], ',')) == NULL
 	  || my_strlen_wordtab(temp2) != 3
+	  || find_elem_graph(map->graph, temp[0]) != NULL
 	  || add_node_graph(map->graph, temp2, temp[0]))
 	{
 	  my_printf(2, "%s %d\n", ERROR_PARSING, *line);

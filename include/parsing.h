@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 16:53:56 2017 johan
-** Last update Tue May  9 16:56:59 2017 johan
+** Last update Tue May  9 21:55:05 2017 johan
 */
 
 #ifndef PARSING_H_
@@ -90,7 +90,7 @@ typedef struct	s_map
 typedef	struct	s_player
 {
   t_image	image;
-  t_node	*postion;
+  t_node	*position;
   char		*node;
   int		is_image;
   int		is_position;

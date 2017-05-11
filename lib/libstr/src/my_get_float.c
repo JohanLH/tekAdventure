@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 12:17:27 2017 johan
-** Last update Fri May  5 12:35:13 2017 johan
+** Last update Tue May  9 18:09:24 2017 johan
 */
 
 #include "my_string.h"
@@ -14,7 +14,7 @@ static float	add_floating(float result, char *str, int *error)
 {
   int		i;
   float		result2;
-  
+
   i = my_strlen(str) - 1;
   result2 = 0;
   while (i != 0 && str[i] != '.')

@@ -5,12 +5,19 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 12:56:11 2017 johan
-** Last update Fri May  5 14:14:24 2017 johan
+** Last update Thu May 11 14:56:24 2017 johan
 */
 
 #include <stdlib.h>
-#include <my_string.h>
+#include "my_string.h"
 #include "graph.h"
+
+static int	my_abs(int value)
+{
+  if (value < 0)
+    return (-value);
+  return (value);
+}
 
 t_node		*find_elem_graph(t_root *root, char *name)
 {
@@ -27,3 +34,30 @@ t_node		*find_elem_graph(t_root *root, char *name)
     }
   return (NULL);
 }
+
+t_node		*find_elem_graph_coor(t_root *root, int x, int y)
+{
+  t_node	*value;
+  t_node	*tmp;
+  t_room	*room_value;
+  t_room	*room_tmp;
+
+  value = root->first;
+  tmp = value->next;
+  while (tmp)
+    {
+      room_value = (t_room *)value->data;
+      room_tmp = (t_room *)tmp->data;
+      if (my_abs(room_tmp->coor.x - x) < my_abs(room_value->coor.x - x)
+	  && my_abs(room_tmp->coor.x - x) + my_abs(room_tmp->coor.y - y)
+	  < my_abs(room_value->coor.x - x) + my_abs(room_value->coor.y - y))
+	value = tmp;
+      if (my_abs(room_tmp->coor.y - y) < my_abs(room_value->coor.y - y)
+	  && my_abs(room_tmp->coor.x - x) + my_abs(room_tmp->coor.y - y)
+	  < my_abs(room_value->coor.x - x) + my_abs(room_value->coor.y - y))
+	value = tmp;
+      tmp = tmp->next;
+    }
+  return (value);
+}
+

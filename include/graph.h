@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 12:46:52 2017 johan
-** Last update Fri May  5 14:12:10 2017 johan
+** Last update Thu May 11 14:51:01 2017 johan
 */
 
 #ifndef GRAPH_H_
@@ -34,6 +34,7 @@ typedef	struct	s_link
 }		t_link;
 
 t_node		*find_elem_graph(t_root *, char *);
+t_node		*find_elem_graph_coor(t_root *, int, int);
 
 int		add_node_graph(t_root *, char **, char *);
 int		add_data_graph(t_root *, char *, char *);

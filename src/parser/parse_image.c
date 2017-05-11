@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 20:24:55 2017 johan
-** Last update Tue May  9 16:03:31 2017 johan
+** Last update Tue May  9 21:50:46 2017 johan
 */
 
 #include "printf.h"
@@ -30,7 +30,8 @@ static void	init_image(t_image *image)
   image->incre_scale.y = 0;
 }
 
-static int	parse_image2(char *temp, t_image *image, t_root *fct_parser, int line)
+static int	parse_image2(char *temp, t_image *image,
+			     t_root *fct_parser, int line)
 {
   char		**temp2 = NULL;
   t_node	*node;
@@ -66,7 +67,7 @@ t_node		*parse_image(t_node *file, t_image *image, int *line)
 {
   t_root	*fct_parser;
   t_node	*node;
-  
+
   init_image(image);
   node = file->next;
   my_printf(1, "\t\tStart parsing image:\n");
@@ -81,6 +82,8 @@ t_node		*parse_image(t_node *file, t_image *image, int *line)
       node = node->next;
     }
   list_delete_all(fct_parser);
+  if (!image->sprite)
+    return (NULL);
   my_printf(1, "\t\tParsing image done\n");
   return (node);
 }

@@ -5,11 +5,11 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  9 15:48:41 2017 johan
-** Last update Tue May  9 17:16:08 2017 johan
+** Last update Tue May  9 22:01:01 2017 johan
 */
 
 #include <stdlib.h>
-#include "list.h"
+#include "graph.h"
 #include "my_string.h"
 #include "printf.h"
 #include "parsing.h"
@@ -58,7 +58,7 @@ t_game		*parse_list(t_root *root)
   t_node	*node;
   int		line;
   t_game	*game;
-  
+
   line = 1;
   node = root->first;
   if ((game = malloc(sizeof(*game))) == NULL ||
@@ -73,7 +73,9 @@ t_game		*parse_list(t_root *root)
       node = node->next;
       line++;
     }
-  if (!game->is_map || !game->is_player)
+  if (!game->is_map || !game->is_player ||
+      (game->player.position =
+       find_elem_graph(game->map.graph, game->player.node)) == NULL)
     return (NULL);
   return (game);
 }

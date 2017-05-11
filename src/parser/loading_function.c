@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Wed May  3 14:31:33 2017 johan
-** Last update Tue May  9 16:05:27 2017 johan
+** Last update Tue May  9 18:06:32 2017 johan
 */
 
 #include "printf.h"
@@ -27,7 +27,7 @@ int	load_image(t_image *image, char *argu, int line)
 
 int	load_position(t_image *image, char *argu, int line)
 {
-  char	**temp = NULL;
+  char	**temp;
   int	error;
 
   error = 1;
@@ -76,7 +76,7 @@ int	load_music(t_image *image, char *argu, int line)
 
 int	load_dimension(t_image *image, char *argu, int line)
 {
-  char	**temp = NULL;
+  char	**temp;
   int	error;
 
   error = 1;

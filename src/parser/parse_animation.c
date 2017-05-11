@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  9 13:49:55 2017 johan
-** Last update Tue May  9 17:29:54 2017 johan
+** Last update Tue May  9 18:06:48 2017 johan
 */
 
 #include <stdlib.h>
@@ -35,7 +35,7 @@ static int	parse_interaction(char **temp, int *line, t_anim *anim)
 
 static int	parse_data_action(t_node *node, int *line, t_anim *anim)
 {
-  char		**temp = NULL;
+  char		**temp;
 
   if ((temp = my_str_to_wordtab(node->data, ':')) == NULL ||
       my_strlen_wordtab(temp) != 2)

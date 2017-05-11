@@ -5,7 +5,7 @@
 ** Login   <iseeze92@epitech.net>
 ** 
 ** Started on  Sat May  6 20:09:03 2017 Johan Lhour
-** Last update Tue May  9 16:55:39 2017 johan
+** Last update Tue May  9 21:58:57 2017 johan
 */
 
 #include <stdlib.h>
@@ -19,9 +19,10 @@ static t_node	*parse_spawn(t_node *file, int *line, t_player *player)
   t_node	*node;
 
   node = file->next;
-  my_printf(1, "\t\t\tStart parsing spawn\n");
+  my_printf(1, "\t\tStart parsing spawn\n");
   while (my_strcmp(node->data, END_PARSING))
     {
+      my_printf(1, "\t\t\t[Loading spawn]\n");
       if (player->node != NULL || player->is_position ||
 	  (player->node = my_strdup(node->data)) == NULL)
 	{
@@ -31,7 +32,7 @@ static t_node	*parse_spawn(t_node *file, int *line, t_player *player)
       *line += 1;
       node = node->next;
     }
-  my_printf(1, "\t\t\tParsing spawn done\n");
+  my_printf(1, "\t\tParsing spawn done\n");
   return (node);
 }
 

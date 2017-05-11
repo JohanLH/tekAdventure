@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Wed May  3 14:31:33 2017 johan
-** Last update Tue May  9 18:06:32 2017 johan
+** Last update Thu May 11 19:37:49 2017 johan
 */
 
 #include "printf.h"
@@ -52,14 +52,25 @@ int	load_position(t_image *image, char *argu, int line)
 int	load_scale(t_image *image, char *argu, int line)
 {
   int	error;
+  char	**temp;
 
   error = 1;
   my_printf(1, "\t\t\t[Loading scale]\n");
-  if ((image->scale = my_get_float(argu, &error)) <= 0 && error < 0)
+  if ((temp = my_str_to_wordtab(argu, ',')) == NULL)
+    return (1);
+  if (my_strlen_wordtab(temp) != 2)
     {
       my_printf(2, "%s %d\n", ERROR_PARSING, line);
       return (1);
     }
+  image->scale.x = my_get_float(temp[0], &error);
+  image->scale.y = my_get_float(temp[1], &error);
+  if (error < 0)
+    {
+      my_printf(2, "%s %d\n", ERROR_PARSING, line);
+      return (1);
+    }
+  free_tab(temp);
   return (0);
 }
 

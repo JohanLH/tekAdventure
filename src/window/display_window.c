@@ -5,15 +5,26 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 16:40:06 2017 johan
-** Last update Thu May 11 17:20:49 2017 johan
+** Last update Thu May 11 19:33:39 2017 johan
 */
 
 #include "window.h"
 
 static void	display_window(t_window *window)
 {
-  sfRenderWindow_display(window->window);
+  t_obj		*obj;
+  t_node	*node;
+
   sfRenderWindow_clear(window->window, sfBlack);
+  sfRenderWindow_drawSprite(window->window, window->game->map.image.sprite, NULL);
+  node = window->game->object->first;
+  while (node)
+    {
+      obj = (t_obj *)node->data;
+      sfRenderWindow_drawSprite(window->window, obj->image.sprite, NULL);
+      node = node->next;
+    }
+  sfRenderWindow_display(window->window);
 }
 
 int	loop_window(t_window *window)

@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 16:53:56 2017 johan
-** Last update Thu May 11 18:58:20 2017 johan
+** Last update Thu May 11 19:36:17 2017 johan
 */
 
 #ifndef PARSING_H_
@@ -51,7 +51,7 @@ typedef struct	s_image
   sfTexture	*texture;
   sfIntRect	rect;
   sfVector2f	pos;
-  float		scale;
+  sfVector2f	scale;
   sfMusic	*music;
   sfVector2f	incre_scale;
 }		t_image;

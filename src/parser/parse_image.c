@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 20:24:55 2017 johan
-** Last update Thu May 11 19:15:49 2017 johan
+** Last update Thu May 11 19:44:39 2017 johan
 */
 
 #include "printf.h"
@@ -25,7 +25,8 @@ static void	init_image(t_image *image)
   image->rect.height = 0;
   image->pos.x = 0;
   image->pos.y = 0;
-  image->scale = 1;
+  image->scale.x = 1;
+  image->scale.y = 1;
   image->incre_scale.x = 0;
   image->incre_scale.y = 0;
 }
@@ -81,6 +82,8 @@ t_node		*parse_image(t_node *file, t_image *image, int *line)
   list_delete_all(fct_parser);
   if (!image->sprite)
     return (NULL);
+  sfSprite_setPosition(image->sprite, image->pos);
+  sfSprite_setScale(image->sprite, image->scale);
   my_printf(1, "\t\tParsing image done\n");
   return (node);
 }

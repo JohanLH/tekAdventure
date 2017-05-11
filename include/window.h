@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 16:33:45 2017 johan
-** Last update Thu May 11 17:21:25 2017 johan
+** Last update Thu May 11 19:19:16 2017 johan
 */
 
 #ifndef WINDOW_H_
@@ -13,8 +13,8 @@
 
 #include "parsing.h"
 
-# define WIDTH 300
-# define HEIGHT 300
+# define WIDTH 980
+# define HEIGHT 720
 # define WINDOW_NAME "tekAventure"
 
 typedef struct		s_window

@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 16:53:56 2017 johan
-** Last update Tue May  9 21:55:05 2017 johan
+** Last update Thu May 11 18:58:20 2017 johan
 */
 
 #ifndef PARSING_H_
@@ -66,8 +66,9 @@ typedef struct	s_anim
 {
   char		*type;
   int		interaction;
-  int		attrib;
   t_image	*image;
+  int		is_img;
+  int		is_type;
 }		t_anim;
 
 typedef struct	s_obj
@@ -123,5 +124,8 @@ int		load_scale(t_image *, char *, int);
 int		load_music(t_image *, char *, int);
 int		load_dimension(t_image *, char *, int);
 int		load_incre_scale(t_image *, char *, int);
+
+void		free_parsing(t_game *);
+void		free_image(t_image *);
 
 #endif /* !PARSING_H_ */

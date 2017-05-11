@@ -5,7 +5,7 @@
 ## Login   <jack@epitech.net>
 ## 
 ## Started on  Mon Nov 28 12:48:01 2016 Jack
-## Last update Tue May  9 21:51:19 2017 johan
+## Last update Thu May 11 18:51:59 2017 johan
 ##
 
 SRCS	=	src/parser/init_image_function.c	\
@@ -19,9 +19,14 @@ SRCS	=	src/parser/init_image_function.c	\
 		src/parser/parse_obj.c			\
 		src/parser/parse_animation.c		\
 		src/parser/parse_list.c			\
+		src/parser/free_parsing.c		\
 		src/graph/find_elem_graph.c		\
 		src/graph/free_graph.c			\
 		src/graph/init_graph.c			\
+		src/window/init_window.c		\
+		src/window/display_window.c		\
+		src/window/free_window.c		\
+		src/window/action_window.c		\
 		src/main.c
 
 OBJS	=	$(SRCS:.c=.o)
@@ -40,7 +45,7 @@ CFLAG 	=	-L ./lib/libstr -lstr			\
 		-L ./lib/libgnl -lgnl			\
 		-L ./lib/libptf -lptf			\
 		-L ./lib/liblist -llist			\
-		-lc_graph_prog_full
+		-lc_graph_prog_full -g3
 
 all:	subsystem $(NAME)
 
@@ -51,7 +56,7 @@ subsystem:
 	make -C ./lib/liblist all
 
 $(NAME): $(OBJS)
-	 gcc $(OBJS) -o $(NAME) $(CFLAG) -g
+	 gcc $(OBJS) -o $(NAME) $(CFLAG)
 
 clean:
 	make -C ./lib/libptf clean

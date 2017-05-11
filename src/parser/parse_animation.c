@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  9 13:49:55 2017 johan
-** Last update Tue May  9 18:06:48 2017 johan
+** Last update Thu May 11 19:01:40 2017 johan
 */
 
 #include <stdlib.h>
@@ -27,7 +27,7 @@ static int	parse_interaction(char **temp, int *line, t_anim *anim)
     }
   else
     {
-      my_printf(2, "%s %d\n", ERROR_PARSING, *line);
+      my_printf(2, "%s %d\n--> %s:%s\n", ERROR_PARSING, *line, temp[0], temp[1]);
       return (1);
     }
   return (0);
@@ -43,8 +43,9 @@ static int	parse_data_action(t_node *node, int *line, t_anim *anim)
   if (!my_strcmp(temp[0], ACTION_TYPE))
     {
       my_printf(1, "\t\t\t[Loading type]\n");
-      if (anim->type != NULL || (anim->type = my_strdup(temp[1])) == NULL)
+      if (anim->is_type || (anim->type = my_strdup(temp[1])) == NULL)
 	return (1);
+      anim->is_type = 1;
     }
   else if (!my_strcmp(temp[0], ACTION_INTERACTION))
     {
@@ -54,8 +55,7 @@ static int	parse_data_action(t_node *node, int *line, t_anim *anim)
     }
   else
     {
-      free_tab(temp);
-      my_printf(2, "%s %d\n", ERROR_PARSING, *line);
+      my_printf(2, "%s %d\n--> %s\n", ERROR_PARSING, *line, node->data);
       return (1);
     }
   free_tab(temp);
@@ -82,6 +82,8 @@ static t_node	*parse_action(t_node *file, int *line, t_anim *anim)
 
 static t_node	*parse_data_animation(t_node *node, int *line, t_anim *anim)
 {
+  t_image	temp;
+
   if (!my_strcmp(node->data, ACTION_PARSING))
     {
       if ((node = parse_action(node, line, anim)) == NULL)
@@ -89,14 +91,15 @@ static t_node	*parse_data_animation(t_node *node, int *line, t_anim *anim)
     }
   else if (!my_strcmp(node->data, IMAGE_PARSING))
     {
-      if (anim->image != NULL || (node = malloc(sizeof(*anim->image))) == NULL)
+      if (anim->is_img || (anim->image = malloc(sizeof(*anim->image))) == NULL
+	  || (node = parse_image(node, &temp, line)) == NULL)
 	return (NULL);
-      if ((node = parse_image(node, anim->image, line)) == NULL)
-	return (NULL);
+      *anim->image = temp;
+      anim->is_img = 1;
     }
   else
     {
-      my_printf(2, "%s %d\n", ERROR_PARSING, *line);
+      my_printf(2, "%s %d\n--> %s\n", ERROR_PARSING, *line, node->data);
       return (NULL);
     }
   return (node);
@@ -109,6 +112,8 @@ t_node		*parse_animation(t_node *file, int *line, t_anim *anim)
   node = file->next;
   anim->image = NULL;
   anim->interaction = 0;
+  anim->is_img = 0;
+  anim->is_type = 0;
   anim->type = NULL;
   *line += 1;
   my_printf(1, "\t\tStart parsing animation:\n");
@@ -119,7 +124,7 @@ t_node		*parse_animation(t_node *file, int *line, t_anim *anim)
       node = node->next;
       *line += 1;
     }
-  if (anim->type == NULL)
+  if (!anim->is_type)
     return (NULL);
   my_printf(1, "\t\tParsing animation done\n");
   return (node);

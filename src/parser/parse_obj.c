@@ -5,7 +5,7 @@
 ** Login   <iseeze92@epitech.net>
 ** 
 ** Started on  Sun May  7 00:11:23 2017 Johan Lhour
-** Last update Tue May  9 17:24:32 2017 johan
+** Last update Thu May 11 19:12:16 2017 johan
 */
 
 #include <stdlib.h>
@@ -24,7 +24,8 @@ static t_node	*parse_data_obj(t_node *node, int *line, t_obj *obj)
     }
   else if (!my_strcmp(node->data, ANIM_PARSING))
     {
-      if (obj->is_anim || (node = parse_animation(node, line, &obj->anim)) == NULL)
+      if (obj->is_anim || (node = parse_animation(node, line,
+						  &obj->anim)) == NULL)
 	return (NULL);
       obj->is_anim = 1;
     }
@@ -43,6 +44,8 @@ t_node		*parse_obj(t_node *file, int *line, t_obj *obj)
   node = file->next;
   obj->is_img = 0;
   obj->is_anim = 0;
+  obj->anim.is_img = 0;
+  obj->anim.is_type = 0;
   *line += 1;
   my_printf(1, "\tStart Parsing object\n");
   while (node && my_strcmp(node->data, END_PARSING) != 0)

@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 20:24:55 2017 johan
-** Last update Tue May  9 21:50:46 2017 johan
+** Last update Thu May 11 19:15:49 2017 johan
 */
 
 #include "printf.h"
@@ -31,18 +31,16 @@ static void	init_image(t_image *image)
 }
 
 static int	parse_image2(char *temp, t_image *image,
-			     t_root *fct_parser, int line)
+			     t_node *node, int line)
 {
   char		**temp2 = NULL;
-  t_node	*node;
   t_parser	*parser;
 
-  node = fct_parser->first;
   if ((temp2 = my_str_to_wordtab(temp, ':')) == NULL)
     return (1);
   if (my_strlen_wordtab(temp2) != 2)
     {
-      my_printf(2, "%s %d\n", ERROR_PARSING, line);
+      my_printf(2, "%s %d\n--> %s\n", ERROR_PARSING, line, temp);
       return (1);
     }
   my_lower_case(temp2[0]);
@@ -58,8 +56,7 @@ static int	parse_image2(char *temp, t_image *image,
 	}
       node = node->next;
     }
-  free_tab(temp2);
-  my_printf(2, "%s %d\n", ERROR_PARSING, line);
+  my_printf(2, "%s %d\n--> %s\n", ERROR_PARSING, line, temp);
   return (1);
 }
 
@@ -76,7 +73,7 @@ t_node		*parse_image(t_node *file, t_image *image, int *line)
   *line += 1;
   while (my_strcmp(node->data, END_PARSING) != 0)
     {
-      if (parse_image2(node->data, image, fct_parser, *line))
+      if (parse_image2(node->data, image, fct_parser->first, *line))
 	return (NULL);
       *line += 1;
       node = node->next;

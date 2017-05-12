@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 16:53:56 2017 johan
-** Last update Fri May 12 16:12:49 2017 johan
+** Last update Fri May 12 19:59:30 2017 johan
 */
 
 #ifndef PARSING_H_
@@ -54,6 +54,7 @@ typedef struct	s_image
   sfSprite	*sprite;
   sfTexture	*texture;
   sfIntRect	rect;
+  sfIntRect	rect_dim;
   sfVector2f	pos;
   sfVector2f	scale;
   sfVector2i	incre_dim;

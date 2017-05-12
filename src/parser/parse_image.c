@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 20:24:55 2017 johan
-** Last update Fri May 12 19:05:34 2017 johan
+** Last update Fri May 12 20:02:17 2017 johan
 */
 
 #include "printf.h"
@@ -28,6 +28,7 @@ static void	init_image(t_image *image)
   image->pos.y = 0;
   image->incre_dim.x = 0;
   image->incre_dim.y = 0;
+  image->status = 1;
   image->scale.x = 1;
   image->scale.y = 1;
   image->incre_scale.x = 0;
@@ -73,10 +74,9 @@ static int	apply_image(t_image *image)
   if (image->rect.width)
     sfSprite_setTextureRect(image->sprite, image->rect);
   image->rect = sfSprite_getTextureRect(image->sprite);
-  image->rect.width *= image->scale.x;
-  image->rect.height *= image->scale.y;
-  image->incre_dim.x *= image->scale.x;
-  image->incre_dim.y *= image->scale.y;
+  image->rect_dim = image->rect;
+  image->rect_dim.width *= image->scale.x;
+  image->rect_dim.height *= image->scale.y;
   return (0);
 }
 

@@ -5,40 +5,56 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 17:03:15 2017 johan
-** Last update Fri May 12 15:30:43 2017 johan
+** Last update Fri May 12 19:54:56 2017 johan
 */
 
 #include "printf.h"
 #include "window.h"
 #include "graph.h"
 
+static int	change_sprite_cursor(t_obj *obj, int value)
+{
+  if (value)
+    {
+      if (obj->image.status != obj->image.max)
+	{
+	  obj->image.status += 1;
+	  obj->image.rect.left += obj->image.incre_dim.x;
+	  obj->image.rect.top += obj->image.incre_dim.y;
+	  sfSprite_setTextureRect(obj->image.sprite, obj->image.rect);
+	}
+      return (0);
+    }
+  if (obj->image.status == obj->image.max)
+    {
+      obj->image.rect.left -= obj->image.incre_dim.x;
+      obj->image.rect.top -= obj->image.incre_dim.y;
+      obj->image.status = 1;
+      sfSprite_setTextureRect(obj->image.sprite, obj->image.rect);
+    }
+  return (0);
+}
+
 static int	change_cursor(t_window *window)
 {
   t_click	*click;
   t_node	*node;
   t_obj		*obj;
-  sfVector2f	scale;
   
   node = window->click->first;
   obj = (t_obj *)window->cursor->data;
   while (node)
     {
       click = (t_click *)node->data;
-      if (window->mouse_pos.x >= click->start.x
-	  && window->mouse_pos.x <= click->end.x
-	  && window->mouse_pos.y >= click->start.y
+      if (window->mouse_pos.x >= click->start.x && window->mouse_pos.x
+	  <= click->end.x && window->mouse_pos.y >= click->start.y
 	  && window->mouse_pos.y <= click->end.y)
 	{
-	  scale = obj->image.scale;
-	  scale.x *= 2;
-	  scale.y *= 2;
-	  sfSprite_setScale(obj->image.sprite, scale);
-	  return (0);
+	  return (change_sprite_cursor(obj, 1));
 	}
       node = node->next;
     }
-  sfSprite_setScale(obj->image.sprite, obj->image.scale);
-  return (0);
+  return (change_sprite_cursor(obj, 0));
 }
 
 static int	move_cursor(t_window *window)
@@ -52,7 +68,8 @@ static int	move_cursor(t_window *window)
     {
       obj = (t_obj *)window->cursor->data;
       change_cursor(window);
-      pos.x -= 6;
+      pos.x -= 10;
+      pos.y -= 10;
       sfSprite_setPosition(obj->image.sprite, pos);
     }
   return (0);

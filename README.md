@@ -33,6 +33,8 @@ Syntaxe:
 				 - position: position de l'image a charger (bonus) (int,int)
 				 - incre-scale: incrementation du scale de l'image (bonus) (float,float)
 				 - music: chemin vers la music a charger (bonus) (char *)
+				 - incre-dim: incrementation du rectangle affichant le sprite (bonus) (int,int)
+				 - max: nombre maximum d'incrementation du rectangle (bonus) (int)
 
 	->          [ACTION]
 			contient differents arguments:

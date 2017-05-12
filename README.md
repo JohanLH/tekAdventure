@@ -8,7 +8,7 @@ Syntaxe:
 	
 	->	    [MAP] -> Obligatoire
 		    	  contient un [GRAPH] -> Obligatoire
-			  	   contient trois regles: [NODE] [LINK] [OUT]
+			  	   contient trois regles: [ROOM] [LINK] [OUT]
 			  contient une image -> obligatoire
 			  
 	->	    [PLAYER] -> obligatoire

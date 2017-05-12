@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Wed May  3 16:22:17 2017 johan
-** Last update Wed May  3 20:16:42 2017 johan
+** Last update Fri May 12 19:13:39 2017 johan
 */
 
 
@@ -53,6 +53,10 @@ t_root		*init_image_function()
       (parser = init_parser(IMAGE_MUSIC, &load_music)) == NULL
       || list_prepend(root, parser) ||
       (parser = init_parser(IMAGE_DIMENSION, &load_dimension)) == NULL
+      || list_prepend(root, parser) ||
+      (parser = init_parser(IMAGE_MAX_DIMENSION, &load_max_dimension)) == NULL
+      || list_prepend(root, parser) ||
+      (parser = init_parser(IMAGE_INCRE_DIM, &load_incre_dim)) == NULL
       || list_prepend(root, parser))
     return (NULL);
   return (root);

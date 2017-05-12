@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 20:24:55 2017 johan
-** Last update Fri May 12 01:09:55 2017 johan
+** Last update Fri May 12 19:05:34 2017 johan
 */
 
 #include "printf.h"
@@ -23,8 +23,11 @@ static void	init_image(t_image *image)
   image->rect.top = 0;
   image->rect.width = 0;
   image->rect.height = 0;
+  image->max = 1;
   image->pos.x = 0;
   image->pos.y = 0;
+  image->incre_dim.x = 0;
+  image->incre_dim.y = 0;
   image->scale.x = 1;
   image->scale.y = 1;
   image->incre_scale.x = 0;
@@ -61,6 +64,22 @@ static int	parse_image2(char *temp, t_image *image,
   return (1);
 }
 
+static int	apply_image(t_image *image)
+{
+  if (!image->sprite)
+    return (1);
+  sfSprite_setPosition(image->sprite, image->pos);
+  sfSprite_setScale(image->sprite, image->scale);
+  if (image->rect.width)
+    sfSprite_setTextureRect(image->sprite, image->rect);
+  image->rect = sfSprite_getTextureRect(image->sprite);
+  image->rect.width *= image->scale.x;
+  image->rect.height *= image->scale.y;
+  image->incre_dim.x *= image->scale.x;
+  image->incre_dim.y *= image->scale.y;
+  return (0);
+}
+
 t_node		*parse_image(t_node *file, t_image *image, int *line)
 {
   t_root	*fct_parser;
@@ -80,12 +99,8 @@ t_node		*parse_image(t_node *file, t_image *image, int *line)
       node = node->next;
     }
   list_delete_all(fct_parser);
-  if (!image->sprite)
+  if (apply_image(image))
     return (NULL);
-  sfSprite_setPosition(image->sprite, image->pos);
-  sfSprite_setScale(image->sprite, image->scale);
-  if (image->rect.width)
-    sfSprite_setTextureRect(image->sprite, image->rect);
   my_printf(1, "\t\tParsing image done\n");
   return (node);
 }

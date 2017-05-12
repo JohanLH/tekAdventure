@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 16:53:56 2017 johan
-** Last update Thu May 11 20:05:00 2017 johan
+** Last update Fri May 12 16:12:49 2017 johan
 */
 
 #ifndef PARSING_H_
@@ -38,6 +38,8 @@
 # define IMAGE_INCRE_SCALE "incre-scale"
 # define IMAGE_MUSIC "music"
 # define IMAGE_DIMENSION "dimension"
+# define IMAGE_MAX_DIMENSION "max"
+# define IMAGE_INCRE_DIM "incre-dim"
 
 # define ACTION_TYPE "type"
 # define ACTION_INTERACTION "interaction"
@@ -54,8 +56,11 @@ typedef struct	s_image
   sfIntRect	rect;
   sfVector2f	pos;
   sfVector2f	scale;
+  sfVector2i	incre_dim;
   sfMusic	*music;
   sfVector2f	incre_scale;
+  int		max;
+  int		status;
 }		t_image;
 
 typedef struct	s_parser
@@ -127,6 +132,8 @@ int		load_scale(t_image *, char *, int);
 int		load_music(t_image *, char *, int);
 int		load_dimension(t_image *, char *, int);
 int		load_incre_scale(t_image *, char *, int);
+int		load_max_dimension(t_image *, char *, int);
+int		load_incre_dim(t_image *, char *, int);
 
 void		free_parsing(t_game *);
 void		free_image(t_image *);

@@ -4,6 +4,7 @@ Fichier de configuration dans le dossier conf.
 
 Syntaxe:
 	Creation d'une nouvelle regle avec ["type"] et fin de cette regle avec [END]
+	
 	Differentes regles principales:
 	
 	->	    [MAP] -> Obligatoire

@@ -5,14 +5,14 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 12:56:11 2017 johan
-** Last update Thu May 11 14:56:24 2017 johan
+** Last update Sat May 13 00:46:06 2017 johan
 */
 
 #include <stdlib.h>
 #include "my_string.h"
 #include "graph.h"
 
-static int	my_abs(int value)
+int	my_abs(int value)
 {
   if (value < 0)
     return (-value);

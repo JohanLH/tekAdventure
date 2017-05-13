@@ -5,7 +5,7 @@
 ## Login   <jack@epitech.net>
 ## 
 ## Started on  Mon Nov 28 12:48:01 2016 Jack
-## Last update Fri May 12 11:50:26 2017 johan
+## Last update Fri May 12 20:39:49 2017 johan
 ##
 
 SRCS	=	src/parser/init_image_function.c	\
@@ -29,6 +29,7 @@ SRCS	=	src/parser/init_image_function.c	\
 		src/window/free_window.c		\
 		src/window/action_window.c		\
 		src/window/find_rect_to_click.c		\
+		src/window/render_sprite_animation.c	\
 		src/main.c
 
 OBJS	=	$(SRCS:.c=.o)

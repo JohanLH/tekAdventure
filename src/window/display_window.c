@@ -5,18 +5,16 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 16:40:06 2017 johan
-** Last update Fri May 12 01:18:13 2017 johan
+** Last update Sat May 13 00:34:10 2017 johan
 */
 
 #include "window.h"
 
-static void	display_window(t_window *window)
+static void	display_object(t_window *window)
 {
   t_obj		*obj;
   t_node	*node;
 
-  sfRenderWindow_clear(window->window, sfBlack);
-  sfRenderWindow_drawSprite(window->window, window->game->map.image.sprite, NULL);
   node = window->game->object->first;
   while (node)
     {
@@ -24,6 +22,16 @@ static void	display_window(t_window *window)
       sfRenderWindow_drawSprite(window->window, obj->image.sprite, NULL);
       node = node->next;
     }
+}
+
+static void	display_window(t_window *window)
+{
+  t_obj		*obj;
+
+  sfRenderWindow_clear(window->window, sfBlack);
+  sfRenderWindow_drawSprite(window->window, window->game->map.image.sprite, NULL);
+  render_sprite_anim(&window->game->map.image);
+  display_object(window);
   sfRenderWindow_drawSprite(window->window, window->game->player.image.sprite, NULL);
   if (window->cursor)
     {

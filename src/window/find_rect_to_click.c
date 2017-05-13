@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May 12 11:50:43 2017 johan
-** Last update Fri May 12 20:02:37 2017 johan
+** Last update Fri May 12 20:09:25 2017 johan
 */
 
 #include <stdlib.h>
@@ -20,7 +20,7 @@ static void	free_click(void *ptr)
   free(click);
 }
 
-static int	add_one_click(t_root *root, t_obj *obj)
+static int	add_one_click(t_root *root, t_obj *obj, t_node *node)
 {
   t_click	*click;
   sfIntRect	tmp;
@@ -31,6 +31,7 @@ static int	add_one_click(t_root *root, t_obj *obj)
   click->start.y = obj->image.pos.y;
   click->end.x = (int)obj->image.pos.x + obj->image.rect_dim.width;
   click->end.y = (int)obj->image.pos.y + obj->image.rect_dim.height;
+  click->obj = node;
   if (list_prepend(root, click))
     return (1);
   return (0);
@@ -50,7 +51,7 @@ t_root		*find_rect_to_click(t_root *object)
       obj = (t_obj *)node->data;
       if (obj->anim.is_type && !my_strcmp(obj->anim.type, CLICK))
 	{
-	  if (add_one_click(root, obj))
+	  if (add_one_click(root, obj, node))
 	    return (NULL);
 	}
       node = node->next;

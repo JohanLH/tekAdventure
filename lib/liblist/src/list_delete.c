@@ -5,13 +5,13 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 14:42:32 2017 johan
-** Last update Fri May  5 21:04:06 2017 johan
+** Last update Sat May 13 19:15:57 2017 johan
 */
 
 #include <stdlib.h>
 #include "list.h"
 
-void	list_delete_elem(t_root *root, t_node *node)
+void	list_delink_elem(t_root *root, t_node *node)
 {
   if (root->first == node)
     root->first = node->next;
@@ -21,6 +21,10 @@ void	list_delete_elem(t_root *root, t_node *node)
     node->next->prev = node->prev;
   if (node->prev)
     node->prev->next = node->next;
+}
+void	list_delete_elem(t_root *root, t_node *node)
+{
+  list_delink_elem(root, node);
   if (root->my_free)
     root->my_free(node->data);
   else

@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 16:40:06 2017 johan
-** Last update Sat May 13 00:34:10 2017 johan
+** Last update Sat May 13 18:40:25 2017 johan
 */
 
 #include "window.h"
@@ -19,6 +19,8 @@ static void	display_object(t_window *window)
   while (node)
     {
       obj = (t_obj *)node->data;
+      if (obj->anim.load_image == 1 && obj->anim.image)
+	sfRenderWindow_drawSprite(window->window, obj->anim.image->sprite, NULL);
       sfRenderWindow_drawSprite(window->window, obj->image.sprite, NULL);
       node = node->next;
     }

@@ -1,11 +1,11 @@
 /*
-** loading_function2.c for parser in /home/johan/Thing/tekadvanture/src/parser
+** loading_img_function2.c for parser in /home/johan/Thing/tekAdventure/src/parser
 ** 
 ** Made by johan
 ** Login   <johan@epitech.net>
 ** 
-** Started on  Wed May  3 14:23:36 2017 johan
-** Last update Fri May 12 19:15:32 2017 johan
+** Started on  Sat May 13 17:46:05 2017 johan
+** Last update Sat May 13 17:46:07 2017 johan
 */
 
 #include "printf.h"

@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 16:53:56 2017 johan
-** Last update Fri May 12 19:59:30 2017 johan
+** Last update Sat May 13 18:12:41 2017 johan
 */
 
 #ifndef PARSING_H_
@@ -43,6 +43,7 @@
 
 # define ACTION_TYPE "type"
 # define ACTION_INTERACTION "interaction"
+# define ACTION_ACTION "action"
 
 # define INTERACTION_ON "on"
 # define INTERACTION_OFF "off"
@@ -64,20 +65,25 @@ typedef struct	s_image
   int		status;
 }		t_image;
 
+typedef struct	s_anim
+{
+  t_image	*image;
+  char		*type;
+  char		*action;
+  int		load_image;
+  int		interaction;
+  int		is_img;
+  int		is_type;
+  int		is_action;
+}		t_anim;
+
 typedef struct	s_parser
 {
   char		*cmd;
   int		(*parser_function) (t_image *, char *, int);
+  int		(*parser_function2) (t_anim *, char *, int);
 }		t_parser;
 
-typedef struct	s_anim
-{
-  char		*type;
-  int		interaction;
-  t_image	*image;
-  int		is_img;
-  int		is_type;
-}		t_anim;
 
 typedef struct	s_obj
 {
@@ -115,6 +121,7 @@ typedef	struct	s_game
 }		t_game;
 
 t_root		*init_image_function();
+t_root		*init_anim_function();
 t_root		*parse_file(char *);
 
 t_node		*parse_image(t_node *, t_image *, int *);
@@ -135,6 +142,10 @@ int		load_dimension(t_image *, char *, int);
 int		load_incre_scale(t_image *, char *, int);
 int		load_max_dimension(t_image *, char *, int);
 int		load_incre_dim(t_image *, char *, int);
+
+int		load_interaction(t_anim *, char *, int);
+int		load_type(t_anim *, char *, int);
+int		load_action(t_anim *, char *, int);
 
 void		free_parsing(t_game *);
 void		free_image(t_image *);

@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 16:33:45 2017 johan
-** Last update Fri May 12 20:39:30 2017 johan
+** Last update Sat May 13 18:41:17 2017 johan
 */
 
 #ifndef WINDOW_H_
@@ -18,6 +18,8 @@
 # define WINDOW_NAME "tekAventure"
 
 # define CLICK "click"
+# define LOAD "load"
+# define DELETE "delete"
 
 typedef struct		s_click
 {

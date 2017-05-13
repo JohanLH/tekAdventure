@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Wed May  3 16:22:17 2017 johan
-** Last update Fri May 12 19:13:39 2017 johan
+** Last update Sat May 13 17:58:16 2017 johan
 */
 
 
@@ -26,7 +26,20 @@ static t_parser	*init_parser(char *cmd, int (*parser_function)
   return (parser);
 }
 
-static void	free_image_function(void *ptr)
+static t_parser	*init_parser2(char *cmd, int (*parser_function2)
+			     (t_anim *, char *, int))
+{
+  t_parser	*parser;
+
+  if ((parser = malloc(sizeof(*parser))) == NULL)
+    return (NULL);
+  if ((parser->cmd = my_strdup(cmd)) == NULL)
+    return (NULL);
+  parser->parser_function2 = parser_function2;
+  return (parser);
+}
+
+static void	free_ptr_function(void *ptr)
 {
   t_parser	*image;
 
@@ -35,12 +48,30 @@ static void	free_image_function(void *ptr)
   free(ptr);
 }
 
+t_root		*init_anim_function()
+{
+  t_root	*root;
+  t_parser	*parser;
+
+  if ((root = list_init(&free_ptr_function)) == NULL)
+    return (NULL);
+  if ((parser = init_parser2(ACTION_TYPE, &load_type)) == NULL
+      || list_prepend(root, parser) ||
+      (parser = init_parser2(ACTION_INTERACTION, &load_interaction)) == NULL
+      || list_prepend(root, parser) ||
+      (parser = init_parser2(ACTION_ACTION, &load_action)) == NULL
+      || list_prepend(root, parser))
+      return (NULL);
+  return (root);
+
+}
+
 t_root		*init_image_function()
 {
   t_root	*root;
   t_parser	*parser;
   
-  if ((root = list_init(&free_image_function)) == NULL)
+  if ((root = list_init(&free_ptr_function)) == NULL)
     return (NULL);
   if ((parser = init_parser(IMAGE_NAME, &load_image)) == NULL
       || list_prepend(root, parser) ||

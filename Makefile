@@ -5,12 +5,13 @@
 ## Login   <jack@epitech.net>
 ## 
 ## Started on  Mon Nov 28 12:48:01 2016 Jack
-## Last update Fri May 12 20:39:49 2017 johan
+## Last update Sat May 13 17:58:41 2017 johan
 ##
 
 SRCS	=	src/parser/init_image_function.c	\
-		src/parser/loading_function.c		\
-		src/parser/loading_function2.c		\
+		src/parser/loading_img_function.c	\
+		src/parser/loading_img_function2.c	\
+		src/parser/loading_anim_function.c	\
 		src/parser/parse_image.c		\
 		src/parser/parse_file.c			\
 		src/parser/parse_graph.c		\

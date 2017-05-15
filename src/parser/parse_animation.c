@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  9 13:49:55 2017 johan
-** Last update Sat May 13 18:56:37 2017 johan
+** Last update Sat May 13 19:50:13 2017 johan
 */
 
 #include <stdlib.h>
@@ -105,7 +105,7 @@ t_node		*parse_animation(t_node *file, int *line, t_anim *anim)
 {
   t_node	*node;
   t_root	*ptr_fct;
-  
+
   node = file->next;
   *line += 1;
   if ((ptr_fct = init_anim_function()) == NULL)

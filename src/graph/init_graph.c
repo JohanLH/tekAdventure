@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 12:53:27 2017 johan
-** Last update Sat May 13 01:02:37 2017 johan
+** Last update Sun May 14 19:45:13 2017 johan
 */
 
 #include <stdlib.h>
@@ -57,8 +57,8 @@ int		add_data_graph(t_root *root, char *name1, char *name2)
   link1->dist = my_abs(roomptr1->coor.x - roomptr2->coor.x) +
     my_abs(roomptr1->coor.y - roomptr2->coor.y);
   link2->dist = link1->dist;
-  if (list_prepend(roomptr1->link, link2) == 84
-      || list_prepend(roomptr2->link, link1) == 84)
+  if (list_prepend(roomptr1->link, link1) == 84
+      || list_prepend(roomptr2->link, link2) == 84)
     return (1);
   return (0);
 }

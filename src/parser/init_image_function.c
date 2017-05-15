@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Wed May  3 16:22:17 2017 johan
-** Last update Sat May 13 17:58:16 2017 johan
+** Last update Sat May 13 19:52:03 2017 johan
 */
 
 
@@ -70,7 +70,7 @@ t_root		*init_image_function()
 {
   t_root	*root;
   t_parser	*parser;
-  
+
   if ((root = list_init(&free_ptr_function)) == NULL)
     return (NULL);
   if ((parser = init_parser(IMAGE_NAME, &load_image)) == NULL

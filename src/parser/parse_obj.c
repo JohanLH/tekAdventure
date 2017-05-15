@@ -1,11 +1,11 @@
 /*
-** parse_obj.c for parser in /home/iseeze92/Documents/tekAdventure/src/parser
+** parse_obj.c for parser in /home/johan/Thing/tekAdventure/src
 ** 
-** Made by Johan Lhour
-** Login   <iseeze92@epitech.net>
+** Made by johan
+** Login   <johan@epitech.net>
 ** 
-** Started on  Sun May  7 00:11:23 2017 Johan Lhour
-** Last update Sat May 13 19:00:27 2017 johan
+** Started on  Sat May 13 19:52:44 2017 johan
+** Last update Sat May 13 19:52:45 2017 johan
 */
 
 #include <stdlib.h>

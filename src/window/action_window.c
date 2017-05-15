@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 17:03:15 2017 johan
-** Last update Sat May 13 19:17:21 2017 johan
+** Last update Sun May 14 18:21:16 2017 johan
 */
 
 #include "printf.h"
@@ -70,8 +70,8 @@ static t_node	*move_cursor(t_window *window)
     {
       obj = (t_obj *)window->cursor->data;
       node = change_cursor(window);
-      pos.x -= 10;
-      pos.y -= 10;
+      pos.x -= 5;
+      pos.y -= 7;
       sfSprite_setPosition(obj->image.sprite, pos);
     }
   return (node);
@@ -87,6 +87,7 @@ static int	check_node(t_window *window)
 	    window->mouse_pos.y);
   node = find_elem_graph_coor(window->game->map.graph, window->mouse_pos.x,
 			      window->mouse_pos.y);
+  path_finding(window->game->map.graph, window->game->player.position, node);
   if (window->cursor)
     {
       obj = (t_obj *)window->cursor->data;
@@ -115,7 +116,9 @@ int		action_window(t_window *window)
 	  click = (t_click *)node->data;
 	  obj = (t_obj *)click->obj->data;
 	  my_printf(1, "%s\n", obj->anim.action);
-	  if (obj->anim.is_action && !my_strcmp(obj->anim.action, LOAD))
+	  if (obj->anim.load_image)
+	    obj->anim.load_image = 0;
+	  else if (obj->anim.is_action && !my_strcmp(obj->anim.action, LOAD))
 	    obj->anim.load_image = 1;
 	  if (obj->anim.is_action && !my_strcmp(obj->anim.action, DELETE))
 	    {

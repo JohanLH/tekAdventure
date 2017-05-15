@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 15:44:47 2017 johan
-** Last update Tue May  9 17:03:39 2017 johan
+** Last update Sat May 13 19:48:28 2017 johan
 */
 
 #include <stdlib.h>
@@ -47,7 +47,7 @@ static t_node	*parse_data_map(t_map *map, t_node *node, int *line)
 t_node		*parse_map(t_map *map, t_node *file, int *line)
 {
   t_node	*node;
-  
+
   init_parse_map(map);
   node = file->next;
   *line += 1;

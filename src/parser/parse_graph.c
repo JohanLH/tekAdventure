@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 14:14:56 2017 johan
-** Last update Tue May  9 21:48:49 2017 johan
+** Last update Sat May 13 19:53:29 2017 johan
 */
 
 #include <stdlib.h>
@@ -61,7 +61,7 @@ static t_node	*parse_link(t_node *file, int *line, t_map *map)
   my_printf(1, "\t\t\t[Adding link done]\n");
   return (node);
 }
-  
+
 static t_node	*parse_room(t_node *file, int *line, t_map *map)
 {
   char		**temp = NULL;

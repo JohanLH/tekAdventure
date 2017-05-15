@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Wed May  3 18:09:59 2017 johan
-** Last update Sat May 13 01:02:55 2017 johan
+** Last update Sun May 14 18:16:49 2017 johan
 */
 
 #include <unistd.h>
@@ -18,7 +18,7 @@
 #include "list.h"
 #include "graph.h"
 
-void		print_list(void *ptr)
+static void	print_list(void *ptr)
 {
   t_link	*link;
   t_room	*room;
@@ -48,7 +48,7 @@ int		main(int ac, char **av)
     return (84);
   if (init_window(WINDOW_NAME, &window))
     return (84);
-  //list_for_each(window.game->map.graph, &print_list);
+  list_for_each(window.game->map.graph, &print_list);
   loop_window(&window);
   list_delete_all(root);
   free_parsing(window.game);

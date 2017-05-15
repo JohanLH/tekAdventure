@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 17:45:03 2017 johan
-** Last update Thu May 11 19:09:17 2017 johan
+** Last update Sat May 13 19:48:15 2017 johan
 */
 
 #include <stdlib.h>
@@ -25,8 +25,7 @@ void	free_image(t_image *image)
 }
 
 void		free_parsing(t_game *game)
-{
-  
+{  
   free_image(&game->map.image);
   free_image(&game->player.image);
   free(game->player.node);

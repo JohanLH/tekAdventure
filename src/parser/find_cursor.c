@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 20:01:26 2017 johan
-** Last update Fri May 12 00:54:56 2017 johan
+** Last update Sat May 13 19:48:35 2017 johan
 */
 
 #include "my_string.h"
@@ -15,7 +15,7 @@ t_node		*find_cursor(t_root *object)
 {
   t_node	*tmp;
   t_obj		*obj;
-  
+
   tmp = object->first;
   while (tmp)
     {

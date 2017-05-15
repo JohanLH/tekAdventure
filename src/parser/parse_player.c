@@ -1,11 +1,11 @@
 /*
-** parse_player.c for parser in /home/iseeze92/Documents/tekAdventure/src/parser
+** parse_player.c for parser in /home/johan/Thing/tekAdventure/src
 ** 
-** Made by Johan Lhour
-** Login   <iseeze92@epitech.net>
+** Made by johan
+** Login   <johan@epitech.net>
 ** 
-** Started on  Sat May  6 20:09:03 2017 Johan Lhour
-** Last update Tue May  9 21:58:57 2017 johan
+** Started on  Sat May 13 19:52:29 2017 johan
+** Last update Sat May 13 19:52:31 2017 johan
 */
 
 #include <stdlib.h>
@@ -45,7 +45,7 @@ static t_node	*parse_data_player(t_node *node, int *line, t_player *player)
 	return (NULL);
       player->is_image = 1;
     }
-  else if (!my_strcmp(node->data, SPAWN_PARSING)) 
+  else if (!my_strcmp(node->data, SPAWN_PARSING))
     {
       if ((node = parse_spawn(node, line, player)) == NULL)
 	return (NULL);

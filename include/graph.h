@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 12:46:52 2017 johan
-** Last update Sat May 13 00:46:21 2017 johan
+** Last update Sun May 14 17:32:58 2017 johan
 */
 
 #ifndef GRAPH_H_
@@ -25,6 +25,9 @@ typedef struct	s_room
   char		*name;
   t_vector3i	coor;
   t_root	*link;
+  t_node	*prev;
+  int		weigth;
+  int		visited;
 }		t_room;
 
 typedef	struct	s_link
@@ -33,6 +36,8 @@ typedef	struct	s_link
   char		*name;
   int		dist;
 }		t_link;
+
+t_root		*path_finding(t_root *, t_node *, t_node *);
 
 t_node		*find_elem_graph(t_root *, char *);
 t_node		*find_elem_graph_coor(t_root *, int, int);

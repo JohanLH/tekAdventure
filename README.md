@@ -40,3 +40,4 @@ Syntaxe:
 			contient differents arguments:
 				 -type: type d'interaction avec l'animation (obligatoire) (char *)
 				 -interaction: active animation (default off) (char *)
+				 -action: action a faire sur l'objet

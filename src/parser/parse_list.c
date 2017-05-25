@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  9 15:48:41 2017 johan
-** Last update Sat May 13 19:00:48 2017 johan
+** Last update Tue May 23 00:53:09 2017 johan
 */
 
 #include <stdlib.h>
@@ -20,12 +20,17 @@ static void	free_object(void *ptr)
 
   object = (t_obj *)ptr;
   free_image(&object->image);
-  if (object->anim.is_type)
-    free(object->anim.type);
-  if (object->anim.is_img)
+  if (object->is_anim)
     {
-      free_image(object->anim.image);
-      free(object->anim.image);
+      if (object->anim.is_type)
+	free(object->anim.type);
+      if (object->anim.is_img)
+	{
+	  free_image(object->anim.image);
+	  free(object->anim.image);
+	}
+      if (object->anim.is_action)
+	free(object->anim.action);
     }
   free(object);
 }
@@ -46,9 +51,6 @@ static t_node	*parse_obj_list(t_node *node, t_game *game, int *line)
 
 static t_node	*parse_data_list(t_node *node, t_game *game, int *line)
 {
-  t_obj		*object;
-  t_obj		temp;
-  
   if (!my_strcmp(node->data, MAP_PARSING))
     {
       if (game->is_map || (node = parse_map(&game->map, node, line)) == NULL)
@@ -72,7 +74,7 @@ static t_node	*parse_data_list(t_node *node, t_game *game, int *line)
   return (node);
 }
 
-t_game		*parse_list(t_root *root)
+t_game		*parse_list(t_root *root, char *name)
 {
   t_node	*node;
   int		line;
@@ -81,10 +83,12 @@ t_game		*parse_list(t_root *root)
   line = 1;
   node = root->first;
   if ((game = malloc(sizeof(*game))) == NULL ||
-      (game->object = list_init(&free_object)) == NULL)
+      (game->object = list_init(&free_object)) == NULL
+      || (game->name = my_strdup(name)) == NULL)
     return (NULL);
   game->is_map = 0;
   game->is_player = 0;
+  game->init = 0;
   while (node)
     {
       if ((node = parse_data_list(node, game, &line)) == NULL)

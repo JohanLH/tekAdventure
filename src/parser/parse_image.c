@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 20:24:55 2017 johan
-** Last update Fri May 12 20:02:17 2017 johan
+** Last update Tue May 16 16:27:15 2017 johan
 */
 
 #include "printf.h"
@@ -23,6 +23,7 @@ static void	init_image(t_image *image)
   image->rect.top = 0;
   image->rect.width = 0;
   image->rect.height = 0;
+  image->rect_dim = image->rect;
   image->max = 1;
   image->pos.x = 0;
   image->pos.y = 0;
@@ -33,6 +34,7 @@ static void	init_image(t_image *image)
   image->scale.y = 1;
   image->incre_scale.x = 0;
   image->incre_scale.y = 0;
+  image->interval = 0;
 }
 
 static int	parse_image2(char *temp, t_image *image,
@@ -77,6 +79,11 @@ static int	apply_image(t_image *image)
   image->rect_dim = image->rect;
   image->rect_dim.width *= image->scale.x;
   image->rect_dim.height *= image->scale.y;
+  if (image->interval)
+    {
+      image->clock = sfClock_create();
+      image->time = sfSeconds(0);
+    }
   return (0);
 }
 

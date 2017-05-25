@@ -5,11 +5,20 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 17:45:03 2017 johan
-** Last update Sat May 13 19:48:15 2017 johan
+** Last update Sat May 20 00:05:19 2017 johan
 */
 
 #include <stdlib.h>
 #include "parsing.h"
+
+void	free_graph_out(void *ptr)
+{
+  t_out	*out;
+
+  out = (t_out *)ptr;
+  free(out->name);
+  free(out);
+}
 
 void	free_image(t_image *image)
 {
@@ -24,12 +33,16 @@ void	free_image(t_image *image)
     }
 }
 
-void		free_parsing(t_game *game)
-{  
+void		free_parsing(void *ptr)
+{
+  t_game	*game;
+
+  game = (t_game *)ptr;
   free_image(&game->map.image);
   free_image(&game->player.image);
   free(game->player.node);
   list_delete_all(game->map.graph);
+  list_delete_all(game->map.out);
   list_delete_all(game->object);
   free(game);
 }

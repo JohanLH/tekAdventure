@@ -1,0 +1,10 @@
+SPAWN : SPAWN
+OBJET : 02
+CLEF  : 04
+ENIGME: Trouver 1 clef (02) pour delock le coffre(04) qui contient 		objet à donner au pnj pour acceder : 05
+
+STORY : J'étais enfermer tout en haut, la peur m'envahis. J'avais besoin de m'isoler (pnj).
+
+01 : porte gauche = 02 ; porte droite = 03 
+03 : porte gauche = 04 ; porte droite = 05 -> LOCK
+

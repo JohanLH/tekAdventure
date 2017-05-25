@@ -1,0 +1,9 @@
+SPAWN : SPAWN
+OBJET : 2 OBJETS à trouver
+ENIGME: Trouver OBJET(03) + OBJET(05) pour unlock 04
+
+STORY : Je dessinais, je m'ennuyais, tout seul dans cette chambre, je 		ne sais plus ou est ce que j'ai mis ce dessin, j'étais innocent.
+
+Spawn -> 01 : 02 -> 03 (OBJET)
+	      04 :  05 (OBJET)
+	            LOCK (PNJ) 

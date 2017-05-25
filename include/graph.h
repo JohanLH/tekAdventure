@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 12:46:52 2017 johan
-** Last update Sun May 14 17:32:58 2017 johan
+** Last update Mon May 15 12:23:40 2017 johan
 */
 
 #ifndef GRAPH_H_
@@ -19,6 +19,11 @@ typedef struct	s_vector3i
   int		y;
   int		z;
 }		t_vector3i;
+
+typedef struct	s_path
+{
+  t_node	*node;
+}		t_path;
 
 typedef struct	s_room
 {

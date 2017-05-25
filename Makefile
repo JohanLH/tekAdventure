@@ -5,13 +5,17 @@
 ## Login   <jack@epitech.net>
 ## 
 ## Started on  Mon Nov 28 12:48:01 2016 Jack
-## Last update Sun May 14 18:13:46 2017 johan
+## Last update Wed May 24 14:28:15 2017 johan
 ##
 
 SRCS	=	src/parser/init_image_function.c	\
+		src/parser/utile.c			\
 		src/parser/loading_img_function.c	\
 		src/parser/loading_img_function2.c	\
 		src/parser/loading_anim_function.c	\
+		src/parser/loading_anim_function2.c	\
+		src/parser/parse_all_map.c		\
+		src/parser/parse_out.c			\
 		src/parser/parse_image.c		\
 		src/parser/parse_file.c			\
 		src/parser/parse_graph.c		\
@@ -21,7 +25,10 @@ SRCS	=	src/parser/init_image_function.c	\
 		src/parser/parse_animation.c		\
 		src/parser/parse_list.c			\
 		src/parser/free_parsing.c		\
-		src/parser/find_cursor.c		\
+                src/parser/init_out_function.c          \
+                src/parser/loading_out_function.c       \
+                src/parser/loading_out_function2.c      \
+		src/parser/error_parsing.c		\
 		src/graph/find_elem_graph.c		\
 		src/graph/free_graph.c			\
 		src/graph/init_graph.c			\
@@ -30,8 +37,13 @@ SRCS	=	src/parser/init_image_function.c	\
 		src/window/display_window.c		\
 		src/window/free_window.c		\
 		src/window/action_window.c		\
+		src/window/action_cursor.c		\
 		src/window/find_rect_to_click.c		\
 		src/window/render_sprite_animation.c	\
+		src/window/move_player.c		\
+		src/window/find_cursor.c		\
+		src/window/action_object.c		\
+		src/window/inventory.c			\
 		src/main.c
 
 OBJS	=	$(SRCS:.c=.o)
@@ -45,6 +57,8 @@ CFLAGS	+=	-I./include				\
 		-I./lib/libptf/include			\
 		-I./lib/libstr/include			\
 		-I./lib/liblist/include			\
+		-lc_graph_prog_full -g3			\
+		-W -Wall -Wextra
 
 CFLAG 	=	-L ./lib/libstr -lstr			\
 		-L ./lib/libgnl -lgnl			\

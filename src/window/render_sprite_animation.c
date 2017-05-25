@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May 12 20:30:40 2017 johan
-** Last update Fri May 12 20:40:10 2017 johan
+** Last update Thu May 25 17:11:42 2017 johan
 */
 
 #include "window.h"
@@ -21,8 +21,8 @@ int	render_sprite_anim(t_image *image)
       return (0);
     }
   image->status = 1;
-  image->rect.left = 0;
-  image->rect.top = 0;
+  image->rect.left = image->rect_dim.left;
+  image->rect.top = image->rect_dim.top;
   sfSprite_setTextureRect(image->sprite, image->rect);
   return (0);
 }

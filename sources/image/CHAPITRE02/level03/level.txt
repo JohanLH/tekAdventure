@@ -1,0 +1,6 @@
+OBJET = peinture du nain à delock dans room02
+
+PNJ SPAWN = start 01 / start 02 (même image mais message different)
+
+PNJ: Ce nain était petit, plutôt sympatique, mais lorsqu'on ne restait
+     pas avec lui, il se méttait à tout saccager et devenait très agressif.

@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  9 13:49:55 2017 johan
-** Last update Sat May 13 19:50:13 2017 johan
+** Last update Thu May 25 13:17:05 2017 johan
 */
 
 #include <stdlib.h>
@@ -91,14 +91,21 @@ static t_node	*parse_data_animation(t_node *node, int *line, t_anim *anim,
 
 static void	init_anim(t_anim *anim)
 {
-  anim->interaction = 0;
+  anim->visibility = 1;
   anim->is_img = 0;
   anim->is_action = 0;
   anim->is_type = 0;
   anim->load_image = 0;
+  anim->load = 0;
+  anim->lock = 0;
+  anim->interval = 0;
+  anim->clock = NULL;
+  anim->unlock = NULL;
   anim->action = NULL;
   anim->type = NULL;
   anim->image = NULL;
+  anim->name = NULL;
+  anim->node = NULL;
 }
 
 t_node		*parse_animation(t_node *file, int *line, t_anim *anim)
@@ -119,7 +126,7 @@ t_node		*parse_animation(t_node *file, int *line, t_anim *anim)
       node = node->next;
       *line += 1;
     }
-  if (!anim->is_type)
+  if (!anim->is_type || (anim->load && !anim->interval))
     return (NULL);
   list_delete_all(ptr_fct);
   my_printf(1, "\t\tParsing animation done\n");

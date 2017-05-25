@@ -1,8 +1,19 @@
 # tekAdventure
 
+Synthaxe ./tekaventure conf/configuration.conf
+
 Fichier de configuration dans le dossier conf.
 
-Syntaxe:
+Synthaxe fichier de config principale:
+
+	 Une regle:
+
+	 ->         [FILE] -> Obligatoire
+	 	    	   contient deux types de donnes:
+		    	     -name: nom de la map (char *)
+			     -path: chemin vers le fichier de configuration secondaire (char *)
+			
+Syntaxe fichier de config secondaire: 
 	Creation d'une nouvelle regle avec ["type"] et fin de cette regle avec [END]
 	Commentaire possible avec symbole '#'
 	
@@ -40,4 +51,12 @@ Syntaxe:
 			contient differents arguments:
 				 -type: type d'interaction avec l'animation (obligatoire) (char *)
 				 -interaction: active animation (default off) (char *)
-				 -action: action a faire sur l'objet
+				 -action: action a faire sur l'objet (char *)
+	->	    [OUT]
+		       contient les sorties vers d'autres maps
+		       		-name: nom de la map venant du fichier de configuration principale (char *)
+				-start: debut de la zone de click (int, int)
+				-end: fin de la zone de click (int, int)
+				-lock: bloque la porte (char *)
+				-node: node connecte a la porte (char *,...)
+				-object: objet debloquant la porte (char *)

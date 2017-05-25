@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 15:07:14 2017 johan
-** Last update Mon May 15 11:45:15 2017 johan
+** Last update Tue May 23 00:55:34 2017 johan
 */
 
 #include <stdlib.h>
@@ -35,7 +35,8 @@ static t_node	*find_unvisited_room(t_root *root)
   while (node)
     {
       room = (t_room *)node->data;
-      if (room->visited == 0 && (near == NULL || room->weigth < room_near->weigth))
+      if (room->visited == 0 && (near == NULL ||
+				 room->weigth < room_near->weigth))
 	{
 	  room_near = room;
 	  near = node;
@@ -61,7 +62,6 @@ static void	check_new_node(t_node *actual)
       link = (t_link *)node->data;
       value = room->weigth + link->dist;
       room2 = (t_room *)link->room->data;
-      //my_printf(1, "Value %d or %d --> %s\n", value, room2->weigth, room2->name);
       if (value < room2->weigth)
 	{
 	  room2->weigth = value;
@@ -71,33 +71,44 @@ static void	check_new_node(t_node *actual)
     }
 }
 
+static void	free_path(void *ptr)
+{
+  t_path	*path;
+
+  path = (t_path *)ptr;
+  free(path);
+}
+
 t_root		*path_finding(t_root *graph, t_node *start, t_node *end)
 {
   t_root	*path;
   t_room	*room;
-  t_link	*link;
   t_node	*node;
+  t_path	*new_path;
 
-  if ((path = list_init(NULL)) == NULL)
+  if ((path = list_init(free_path)) == NULL)
     return (NULL);
   list_for_each(graph, &init_path);
   room = (t_room *)start->data;
   room->weigth = 0;
-  my_printf(1, "START: %s coor:%d,%d\n", room->name, room->coor.x, room->coor.y);
   while ((node = find_unvisited_room(graph)))
-    {
-      room = (t_room *)node->data;
-      //my_printf(1, "\nName: %s weigth:%d\n\n", room->name, room->weigth);
-      check_new_node(node);
-    }
+    check_new_node(node);
   room = (t_room *)end->data;
-  my_printf(1, "END: %s coor:%d,%d\n", room->name,
-		room->coor.x, room->coor.y);
   node = room->prev;
+  if ((new_path = malloc(sizeof(*new_path))) == NULL)
+    return (NULL);
+  new_path->node = end;
+  if (list_prepend(path, new_path))
+    return (NULL);
   while (node)
     {
+      if ((new_path = malloc(sizeof(*new_path))) == NULL)
+	return (NULL);
+      new_path->node = node;
+      if (list_prepend(path, new_path))
+	return (NULL);
       room = (t_room *)node->data;
-      my_printf(1, "Name: %s coor:%d,%d\n", room->name, room->coor.x, room->coor.y);
       node = room->prev;
     }
+  return (path);
 }

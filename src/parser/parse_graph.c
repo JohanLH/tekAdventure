@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 14:14:56 2017 johan
-** Last update Sat May 13 19:53:29 2017 johan
+** Last update Tue May 23 00:52:21 2017 johan
 */
 
 #include <stdlib.h>
@@ -14,28 +14,6 @@
 #include "parsing.h"
 #include "my_string.h"
 #include "printf.h"
-
-static t_node	*parse_out(t_node *file, int *line, t_map *map)
-{
-  t_node	*node = NULL;
-
-  node = file->next;
-  my_printf(1, "\t\t\t[Finding out]\n");
-  *line += 1;
-  while (my_strcmp(node->data, END_PARSING) != 0)
-    {
-      my_printf(1, "\t\t\t\t[Adding out]\n");
-      if ((map->graph_end = find_elem_graph(map->graph, node->data)) == NULL)
-	{
-	  my_printf(2, "%s %d\n", ERROR_PARSING, *line);
-	  return (NULL);
-	}
-      *line += 1;
-      node = node->next;
-    }
-  my_printf(1, "\t\t\t[Adding out done]\n");
-  return (node);
-}
 
 static t_node	*parse_link(t_node *file, int *line, t_map *map)
 {
@@ -55,6 +33,7 @@ static t_node	*parse_link(t_node *file, int *line, t_map *map)
 	  my_printf(2, "%s %d\n", ERROR_PARSING, *line);
 	  return (NULL);
 	}
+      free_tab(temp);
       node = node->next;
       *line += 1;
     }
@@ -86,6 +65,8 @@ static t_node	*parse_room(t_node *file, int *line, t_map *map)
 	  my_printf(2, "%s %d\n", ERROR_PARSING, *line);
 	  return (NULL);
 	}
+      free_tab(temp);
+      free_tab(temp2);
       *line += 1;
       node = node->next;
     }
@@ -120,12 +101,13 @@ static t_node	*parse_data_graph(t_node *node, int *line, t_map *map)
 
 t_node		*parse_graph(t_node *file, int *line, t_map *map)
 {
-  char		*data;
   t_node	*node;
-  
+
   node = file->next;
   *line += 1;
   my_printf(1, "\t\tStart parsing graph:\n");
+  if ((map->out = list_init(&free_graph_out)) == NULL)
+    return (NULL);
   while (my_strcmp(node->data, END_PARSING) != 0)
     {
       if ((node = parse_data_graph(node, line, map)) == NULL)

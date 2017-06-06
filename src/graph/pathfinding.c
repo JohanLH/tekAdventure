@@ -5,13 +5,12 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 15:07:14 2017 johan
-** Last update Tue May 23 00:55:34 2017 johan
+** Last update Sat May 27 23:50:32 2017 johan
 */
 
 #include <stdlib.h>
 #include <limits.h>
 #include "graph.h"
-#include "printf.h"
 
 static void	init_path(void *ptr)
 {
@@ -93,22 +92,15 @@ t_root		*path_finding(t_root *graph, t_node *start, t_node *end)
   room->weigth = 0;
   while ((node = find_unvisited_room(graph)))
     check_new_node(node);
-  room = (t_room *)end->data;
-  node = room->prev;
-  if ((new_path = malloc(sizeof(*new_path))) == NULL)
-    return (NULL);
-  new_path->node = end;
-  if (list_prepend(path, new_path))
-    return (NULL);
-  while (node)
+  while (end)
     {
       if ((new_path = malloc(sizeof(*new_path))) == NULL)
 	return (NULL);
-      new_path->node = node;
+      new_path->node = end;
       if (list_prepend(path, new_path))
 	return (NULL);
-      room = (t_room *)node->data;
-      node = room->prev;
+      room = (t_room *)end->data;
+      end = room->prev;
     }
   return (path);
 }

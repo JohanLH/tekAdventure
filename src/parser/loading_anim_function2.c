@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Wed May 24 14:18:54 2017 johan
-** Last update Thu May 25 14:07:39 2017 johan
+** Last update Sun May 28 00:08:45 2017 johan
 */
 
 #include "parsing.h"
@@ -35,7 +35,6 @@ int     load_action_lock(t_anim *anim, char *argu, int line)
     }
   else
     return (error_parsing(line));
-  printf("%d\n", anim->lock);
   return (0);
 }
 

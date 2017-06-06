@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 17:03:15 2017 johan
-** Last update Wed May 24 16:24:23 2017 johan
+** Last update Sun May 28 00:39:30 2017 johan
 */
 
 #include "window.h"
@@ -71,16 +71,23 @@ static int	change_map(t_window *window, t_node *door)
 
 int		action_window(t_window *window)
 {
-  t_node	*obj = NULL;
-  t_node	*door = NULL;
+  t_node	*obj;
+  t_node	*door;
 
+  door = NULL;
+  obj = NULL;
   window->mouse_pos = sfMouse_getPosition((sfWindow *)window->window);
   move_cursor(window, &obj, &door);
+  if (sfKeyboard_isKeyPressed(sfKeyEscape) == sfTrue)
+    window->print_menu = 1;
   if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue)
     {
       action_object(window, obj);
-      if (window->move != 1 && door)
-	change_map(window, door);
+      if (window->move != 1)
+	{
+	  if (door)
+	    change_map(window, door);
+	}
     }
   if (sfMouse_isButtonPressed(sfMouseRight) == sfTrue)
     check_node(window);

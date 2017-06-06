@@ -1,11 +1,11 @@
 /*
-* parsing.h for tekadvanture in /home/johan/Thing/liblist
+** parsing.h for tekadvanture in /home/johan/Thing/liblist
 ** 
 ** Made by johan
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 16:53:56 2017 johan
-** Last update Thu May 25 13:16:01 2017 johan
+** Last update Sat May 27 19:57:51 2017 johan
 */
 
 #ifndef PARSING_H_
@@ -14,7 +14,7 @@
 #include <SFML/Window.h>
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
- 
+
 #include "list.h"
 
 # define END_PARSING "[END]"
@@ -131,7 +131,6 @@ typedef struct	s_parser
   int		(*parser_function3) (t_out *, char *, int);
 }		t_parser;
 
-
 typedef struct	s_obj
 {
   t_anim	anim;
@@ -174,6 +173,7 @@ t_root		*init_anim_function();
 t_root		*init_out_function();
 t_root		*parse_file(char *);
 t_root		*parse_all_map(char *);
+t_root		*parse_menu(char *);
 
 t_node		*parse_out(t_node *, int *, t_map *);
 t_node		*parse_image(t_node *, t_image *, int *);

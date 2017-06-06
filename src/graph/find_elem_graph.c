@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 12:56:11 2017 johan
-** Last update Sat May 13 00:46:06 2017 johan
+** Last update Fri May 26 14:26:15 2017 Jack
 */
 
 #include <stdlib.h>
@@ -23,7 +23,7 @@ t_node		*find_elem_graph(t_root *root, char *name)
 {
   t_node	*temp;
   t_room	*room;
-  
+
   temp = root->first;
   while (temp)
     {

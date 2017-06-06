@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Sat May 20 01:01:16 2017 johan
-** Last update Thu May 25 14:14:41 2017 johan
+** Last update Sat May 27 20:38:58 2017 johan
 */
 
 #include "printf.h"
@@ -13,46 +13,13 @@
 #include "graph.h"
 #include "my_string.h"
 
-static t_node   *change_sprite_cursor(t_obj *obj, int value,
-				      t_node *node, int power)
-{
-  int		max;
-
-  max = obj->image.max * power;
-  if (max > 2)
-    max -= 1;
-  if (value)
-    {
-      if (obj->image.status != max)
-	{
-	  obj->image.status = obj->image.status + 1 * power;
-	  obj->image.rect.left = obj->image.rect.left +
-	    (obj->image.incre_dim.x * power);
-	  obj->image.rect.top = obj->image.rect.top +
-	    (obj->image.incre_dim.y * power);
-	  sfSprite_setTextureRect(obj->image.sprite, obj->image.rect);
-	}
-      return (node);
-    }
-  if (obj->image.status == max)
-    {
-      obj->image.rect.left = obj->image.rect.left -
-	(obj->image.incre_dim.x * power);
-      obj->image.rect.top = obj->image.rect.top -
-	(obj->image.incre_dim.y * power);
-      obj->image.status = 1;
-      sfSprite_setTextureRect(obj->image.sprite, obj->image.rect);
-    }
-  return (NULL);
-}
-
 static t_node   *change_cursor(t_window *window)
 {
   t_click       *click;
   t_node        *node;
   t_obj         *obj;
   t_obj		*obj2;
-  
+
   node = window->click->first;
   obj = (t_obj *)window->cursor->data;
   while (node)
@@ -63,6 +30,7 @@ static t_node   *change_cursor(t_window *window)
 	  && window->mouse_pos.y <= click->end.y)
 	{
 	  obj2 = (t_obj *)click->obj->data;
+	  change_sprite_cursor(obj, 0, node, 1);
 	  if (obj2->anim.lock == 0)
 	    return (change_sprite_cursor(obj, 1, node, 2));
 	  else
@@ -88,6 +56,7 @@ static t_node	*change_cursor_door(t_window *window)
 	  <= out->end.x && window->mouse_pos.y >= out->start.y
 	  && window->mouse_pos.y <= out->end.y)
 	{
+	  change_sprite_cursor(obj, 0, node, 2);
 	  if (!out->lock)
 	    return (change_sprite_cursor(obj, 1, node, 2));
 	  else

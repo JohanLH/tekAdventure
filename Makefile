@@ -5,10 +5,11 @@
 ## Login   <jack@epitech.net>
 ## 
 ## Started on  Mon Nov 28 12:48:01 2016 Jack
-## Last update Wed May 24 14:28:15 2017 johan
+## Last update Mon May 29 14:11:23 2017 johan
 ##
 
 SRCS	=	src/parser/init_image_function.c	\
+		src/parser/init_anim_function.c		\
 		src/parser/utile.c			\
 		src/parser/loading_img_function.c	\
 		src/parser/loading_img_function2.c	\
@@ -29,17 +30,20 @@ SRCS	=	src/parser/init_image_function.c	\
                 src/parser/loading_out_function.c       \
                 src/parser/loading_out_function2.c      \
 		src/parser/error_parsing.c		\
+		src/parser/parse_menu.c			\
 		src/graph/find_elem_graph.c		\
 		src/graph/free_graph.c			\
 		src/graph/init_graph.c			\
 		src/graph/pathfinding.c			\
 		src/window/init_window.c		\
 		src/window/display_window.c		\
+		src/window/display_menu.c		\
 		src/window/free_window.c		\
 		src/window/action_window.c		\
 		src/window/action_cursor.c		\
 		src/window/find_rect_to_click.c		\
 		src/window/render_sprite_animation.c	\
+		src/window/change_cursor_sprite.c	\
 		src/window/move_player.c		\
 		src/window/find_cursor.c		\
 		src/window/action_object.c		\
@@ -57,14 +61,13 @@ CFLAGS	+=	-I./include				\
 		-I./lib/libptf/include			\
 		-I./lib/libstr/include			\
 		-I./lib/liblist/include			\
-		-lc_graph_prog_full -g3			\
 		-W -Wall -Wextra
 
 CFLAG 	=	-L ./lib/libstr -lstr			\
 		-L ./lib/libgnl -lgnl			\
 		-L ./lib/libptf -lptf			\
 		-L ./lib/liblist -llist			\
-		-lc_graph_prog_full -g3
+		-lc_graph_prog_full
 
 all:	subsystem $(NAME)
 

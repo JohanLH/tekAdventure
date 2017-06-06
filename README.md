@@ -52,6 +52,12 @@ Syntaxe fichier de config secondaire:
 				 -type: type d'interaction avec l'animation (obligatoire) (char *)
 				 -interaction: active animation (default off) (char *)
 				 -action: action a faire sur l'objet (char *)
+				 -lock: bloque un objet (on || off)
+				 -node: node depuis lequel le joueur recupere l'objet (char *)
+				 -load: affichage d'un sprite lors d'une interraction sur l'objet (on || off)
+				 -time: temps d'affichage d'un sprite (int)
+				 -visibility: affichage de l'objet (on || off)
+				 -name: nom de l'objet ou porte deverrouiller grace a l'objet ramasse (char *)
 	->	    [OUT]
 		       contient les sorties vers d'autres maps
 		       		-name: nom de la map venant du fichier de configuration principale (char *)

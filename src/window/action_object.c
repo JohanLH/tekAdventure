@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May 16 22:15:44 2017 johan
-** Last update Thu May 25 19:29:10 2017 johan
+** Last update Sun May 28 18:44:17 2017 johan
 */
 
 #include "window.h"
@@ -28,10 +28,19 @@ static int	player_near_object(t_window *window, t_obj *obj)
       i++;
     }
   return (0);
-  
 }
 
-static int	move_obj_to_inventory(t_window *window, t_node *node,
+static void	change_item_inventory(t_obj *object, t_window *window)
+{
+  object->image.scale.x = 1;
+  object->image.scale.y = 1;
+  sfSprite_setScale(object->image.sprite, object->image.scale);
+  object->image.pos.x = INVENTORY_SIZE * window->inventory->nbr_elem;
+  object->image.pos.y = 0;
+  sfSprite_setPosition(object->image.sprite, object->image.pos);
+}
+
+static void	move_obj_to_inventory(t_window *window, t_node *node,
 				      t_click *click, t_obj *object)
 {
   sfClock	*clock;
@@ -39,25 +48,22 @@ static int	move_obj_to_inventory(t_window *window, t_node *node,
 
   clock = sfClock_create();
   time = sfSeconds(0);
-  object->image.scale.x = 1;
-  object->image.scale.y = 1;
-  sfSprite_setScale(object->image.sprite, object->image.scale);
-  object->image.pos.x = INVENTORY_SIZE * window->inventory->nbr_elem;
-  object->image.pos.y = 0;
-  sfSprite_setPosition(object->image.sprite, object->image.pos);
+  change_item_inventory(object, window);
+  if (object->anim.image->music)
+    sfMusic_play(object->anim.image->music);
   while ((int)time.microseconds < object->anim.interval)
     {
       if (object->anim.image)
-	sfRenderWindow_drawSprite(window->window,
-				  object->anim.image->sprite, NULL);
+	reload_time(object->anim.image, object->anim.image->clock,
+		    object->anim.image->interval, &object->anim.image->time);
+      sfRenderWindow_drawSprite(window->window,
+				object->anim.image->sprite, NULL);
       sfRenderWindow_display(window->window);
       time = sfClock_getElapsedTime(clock);
     }
   list_delink_elem(window->game->object, click->obj);
   list_delete_elem(window->click, node);
-  if (list_prepend(window->inventory, object))
-    return (1);
-  return (0);
+  list_prepend(window->inventory, object);
 }
 
 void		action_object(t_window *window, t_node *node)

@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Sat May 13 19:52:29 2017 johan
-** Last update Sat May 13 19:52:31 2017 johan
+** Last update Sun May 28 00:02:02 2017 johan
 */
 
 #include <stdlib.h>
@@ -61,7 +61,7 @@ static t_node	*parse_data_player(t_node *node, int *line, t_player *player)
 
 t_node		*parse_player(t_node *file, int *line, t_player *player)
 {
-  t_node	*node = NULL;
+  t_node	*node;
 
   node = file->next;
   *line += 1;

@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 16:40:06 2017 johan
-** Last update Thu May 25 17:14:52 2017 johan
+** Last update Mon May 29 12:54:49 2017 johan
 */
 
 #include "window.h"
@@ -14,7 +14,7 @@ static void	display_inventory(t_window *window)
 {
   t_node	*node;
   t_obj		*obj;
-  
+
   node = window->inventory->first;
   while (node)
     {
@@ -24,7 +24,7 @@ static void	display_inventory(t_window *window)
     }
 }
 
-static int	reload_time(t_image *image, sfClock *clock,
+int	reload_time(t_image *image, sfClock *clock,
 			    int interval, sfTime *time)
 {
   if (interval)
@@ -97,21 +97,26 @@ static void	display_window(t_window *window)
   sfRenderWindow_display(window->window);
 }
 
-int	loop_window(t_window *window)
+void	loop_window(t_window *window)
 {
   while (sfRenderWindow_isOpen(window->window))
     {
-      display_window(window);
+      if (!window->print_menu)
+	display_window(window);
+      else
+	{
+	  if (menu_loop(window))
+	    return (free_window(window));
+	  if (window->music)
+	    sfMusic_play(window->music);
+	  if (window->music_menu)
+	    sfMusic_stop(window->music_menu);
+	}
       while (sfRenderWindow_pollEvent(window->window, &window->event))
 	{
-	  display_window(window);
 	  action_window(window);
 	  if (window->event.type == sfEvtClosed)
-	    {
-	      free_window(window);
-	      return (0);
-	    }
+	    return (free_window(window));
 	}
     }
-  return (0);
 }

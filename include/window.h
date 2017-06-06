@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Thu May 11 16:33:45 2017 johan
-** Last update Thu May 25 18:13:58 2017 johan
+** Last update Mon May 29 12:55:43 2017 johan
 */
 
 #ifndef WINDOW_H_
@@ -49,12 +49,16 @@ typedef struct		s_window
   sfWindow		*window_event;
   sfMouseButton		mouse;
   sfVector2i		mouse_pos;
+  sfMusic		*music;
+  sfMusic		*music_menu;
   t_game		*game;
   t_node		*cursor;
   t_root		*click;
   t_root		*path;
   t_root		*inventory;
   t_root		*all_map;
+  t_root		*menu;
+  int			print_menu;
   int			move;
   sfTime		time;
   sfClock		*clock;
@@ -62,13 +66,17 @@ typedef struct		s_window
 
 t_root			*find_rect_to_click(t_root *);
 
+t_node			*change_sprite_cursor(t_obj *, int, t_node *, int);
+
 int			init_window(char *, t_window *, int);
-int			loop_window(t_window *);
 int			action_window(t_window *);
 int			render_sprite_anim(t_image *);
 int			move_player(t_window *);
 int			check_node(t_window *);
+int			reload_time(t_image *, sfClock *, int, sfTime *);
+int			menu_loop(t_window *);
 
+void			loop_window(t_window *);
 void			action_object(t_window *, t_node *);
 void			free_window(t_window *);
 void			move_cursor(t_window *, t_node **, t_node **);

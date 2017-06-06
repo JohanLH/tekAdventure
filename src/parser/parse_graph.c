@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 14:14:56 2017 johan
-** Last update Tue May 23 00:52:21 2017 johan
+** Last update Sat May 27 23:53:45 2017 johan
 */
 
 #include <stdlib.h>
@@ -17,8 +17,8 @@
 
 static t_node	*parse_link(t_node *file, int *line, t_map *map)
 {
-  t_node	*node = NULL;
-  char		**temp = NULL;
+  t_node	*node;
+  char		**temp;
 
   my_printf(1, "\t\t\t[Start parsing link]\n");
   node = file->next;
@@ -41,13 +41,11 @@ static t_node	*parse_link(t_node *file, int *line, t_map *map)
   return (node);
 }
 
-static t_node	*parse_room(t_node *file, int *line, t_map *map)
+static t_node	*parse_room(t_node *node, int *line, t_map *map)
 {
-  char		**temp = NULL;
-  char		**temp2 = NULL;
-  t_node	*node = NULL;
+  char		**temp;
+  char		**temp2;
 
-  node = file->next;
   *line += 1;
   my_printf(1, "\t\t\t[Start parsing room]\n");
   if ((map->graph = list_init(&graph_free_room)) == NULL)
@@ -61,10 +59,7 @@ static t_node	*parse_room(t_node *file, int *line, t_map *map)
 	  || my_strlen_wordtab(temp2) != 3
 	  || find_elem_graph(map->graph, temp[0]) != NULL
 	  || add_node_graph(map->graph, temp2, temp[0]))
-	{
-	  my_printf(2, "%s %d\n", ERROR_PARSING, *line);
-	  return (NULL);
-	}
+	return (NULL);
       free_tab(temp);
       free_tab(temp2);
       *line += 1;
@@ -78,7 +73,7 @@ static t_node	*parse_data_graph(t_node *node, int *line, t_map *map)
 {
   if (my_strcmp(node->data, ROOM_PARSING) == 0)
 	{
-	  if ((node = parse_room(node, line, map)) == NULL)
+	  if ((node = parse_room(node->next, line, map)) == NULL)
 	    return (NULL);
 	}
   else if (my_strcmp(node->data, LINK_PARSING) == 0)

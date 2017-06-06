@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May 12 11:50:43 2017 johan
-** Last update Tue May 23 00:54:33 2017 johan
+** Last update Fri May 26 14:27:23 2017 Jack
 */
 
 #include <stdlib.h>
@@ -23,7 +23,7 @@ static void	free_click(void *ptr)
 static int	add_one_click(t_root *root, t_obj *obj, t_node *node)
 {
   t_click	*click;
-  
+
   if ((click = malloc(sizeof(*click))) == NULL)
     return (1);
   click->start.x = obj->image.pos.x;

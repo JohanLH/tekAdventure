@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Mon Jan  2 17:55:23 2017 johan
-** Last update Thu May  4 21:42:29 2017 johan
+** Last update Sun May 28 00:44:41 2017 johan
 */
 
 #include <fcntl.h>
@@ -99,12 +99,13 @@ char		*get_next_line(const int fd)
 {
   int		i;
   static char	*buff;
-  char		*str = NULL;
+  char		*str;
   int		value2;
 
   i = 0;
   if ((buff = init10(buff, str, fd)) == NULL)
     return (NULL);
+  str = NULL;
   while (buff[i] != '\n')
     {
       if (buff[i] == '\0')

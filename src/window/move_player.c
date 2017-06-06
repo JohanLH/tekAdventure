@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Mon May 15 22:40:08 2017 johan
-** Last update Wed May 24 18:41:32 2017 johan
+** Last update Sun May 28 18:34:04 2017 Jack
 */
 
 #include "window.h"
@@ -62,6 +62,25 @@ static void	change_character(t_window *window, int x, int y)
     window->game->player.image.rect.top = BOTTOM_RIGHT;
 }
 
+static void	change_sprite_player(t_window *window, t_room *room,
+				     t_path *path)
+{
+  change_character(window,
+		   calcul_velocity(window->game->player.image.pos.x,
+				   room->coor.x),
+		   calcul_velocity(window->game->player.image.pos.y,
+				   room->coor.y));
+  window->game->player.image.pos.x +=
+    calcul_velocity(window->game->player.image.pos.x, room->coor.x);
+  window->game->player.image.pos.y +=
+    calcul_velocity(window->game->player.image.pos.y, room->coor.y);
+  stop_player(window, room, path->node);
+  sfSprite_setPosition(window->game->player.image.sprite,
+		       window->game->player.image.pos);
+  sfSprite_setScale(window->game->player.image.sprite,
+		       window->game->player.image.scale);
+}
+
 int     move_player(t_window *window)
 {
   t_room        *room;
@@ -80,18 +99,7 @@ int     move_player(t_window *window)
     }
   path = (t_path *)window->path->first->data;
   room = (t_room *)path->node->data;
-  change_character(window,
-		   calcul_velocity(window->game->player.image.pos.x, room->coor.x),
-		   calcul_velocity(window->game->player.image.pos.y, room->coor.y));
-  window->game->player.image.pos.x +=
-    calcul_velocity(window->game->player.image.pos.x, room->coor.x);
-  window->game->player.image.pos.y +=
-    calcul_velocity(window->game->player.image.pos.y, room->coor.y);
-  stop_player(window, room, path->node);
-  sfSprite_setPosition(window->game->player.image.sprite,
-		       window->game->player.image.pos);
-  sfSprite_setScale(window->game->player.image.sprite,
-		       window->game->player.image.scale);
+  change_sprite_player(window, room, path);
   return (0);
 }
 

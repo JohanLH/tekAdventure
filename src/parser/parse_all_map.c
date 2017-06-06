@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May 19 21:29:33 2017 johan
-** Last update Mon May 22 23:27:20 2017 johan
+** Last update Sun May 28 19:27:52 2017 johan
 */
 
 #include <stdlib.h>
@@ -16,8 +16,8 @@
 static int	parse_type_conf(char **data, int *line,
 				 char **name, t_root *all_map)
 {
-  t_root	*file_data = NULL;
-  t_game	*game = NULL;
+  t_root	*file_data;
+  t_game	*game;
 
   if (!my_strcmp(data[0], FILE_NAME))
     {
@@ -42,8 +42,8 @@ static int	parse_type_conf(char **data, int *line,
 
 static t_node	*parse_data_file_conf(t_node *node, int *line, t_root *all_map)
 {
-  char		**tab = NULL;
-  char		*name = NULL;
+  char		**tab;
+  char		*name;
 
   *line += 1;
   while (node && my_strcmp(node->data, END_PARSING) != 0)
@@ -66,9 +66,9 @@ static t_node	*parse_data_file_conf(t_node *node, int *line, t_root *all_map)
 
 t_root		*parse_all_map(char *file)
 {
-  t_root	*all_map = NULL;
-  t_root	*conf_file = NULL;
-  t_node	*node = NULL;
+  t_root	*all_map;
+  t_root	*conf_file;
+  t_node	*node;
   int		line;
 
   line = 1;

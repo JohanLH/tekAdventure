@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 13:56:15 2017 johan
-** Last update Fri May  5 15:49:33 2017 johan
+** Last update Fri May 26 14:25:58 2017 Jack
 */
 
 #include <stdlib.h>
@@ -23,7 +23,7 @@ void		graph_free_data(void *ptr)
 void		graph_free_room(void *ptr)
 {
   t_room	*room;
-  
+
   room = (t_room *)ptr;
   list_delete_all(room->link);
   free(room->name);

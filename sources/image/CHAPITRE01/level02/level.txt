@@ -6,4 +6,4 @@ STORY : Je dessinais, je m'ennuyais, tout seul dans cette chambre, je 		ne sais 
 
 Spawn -> 01 : 02 -> 03 (OBJET)
 	      04 :  05 (OBJET)
-	            LOCK (PNJ) 
+	            LOCK (PNJ)

@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 14:42:32 2017 johan
-** Last update Sat May 13 19:15:57 2017 johan
+** Last update Sun May 28 00:10:19 2017 johan
 */
 
 #include <stdlib.h>
@@ -22,6 +22,7 @@ void	list_delink_elem(t_root *root, t_node *node)
   if (node->prev)
     node->prev->next = node->next;
 }
+
 void	list_delete_elem(t_root *root, t_node *node)
 {
   list_delink_elem(root, node);

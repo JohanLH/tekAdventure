@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Wed May  3 20:01:23 2017 johan
-** Last update Thu May 11 19:41:14 2017 johan
+** Last update Sun May 28 00:02:46 2017 johan
 */
 
 #include <fcntl.h>
@@ -15,8 +15,8 @@
 
 static int	add_line_from_file(t_root *root, char *line)
 {
-  char		**temp = NULL;
-  char		**temp2 = NULL;
+  char		**temp;
+  char		**temp2;
 
   if (line[0] == '#')
     return (0);
@@ -37,8 +37,8 @@ static int	add_line_from_file(t_root *root, char *line)
 t_root		*parse_file(char *file)
 {
   int		fd;
-  t_root	*root = NULL;
-  char		*temp = NULL;
+  t_root	*root;
+  char		*temp;
 
   if ((fd = open(file, O_RDONLY)) < 0 ||
       (root = list_init(NULL)) == NULL)

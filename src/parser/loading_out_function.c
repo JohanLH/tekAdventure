@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May 23 00:22:56 2017 johan
-** Last update Tue May 23 01:10:06 2017 johan
+** Last update Sun May 28 00:05:06 2017 johan
 */
 
 #include <stdlib.h>
@@ -53,7 +53,7 @@ int	load_out_lock(t_out *out, char *argu, int line)
 
 int	load_out_node(t_out *out, char *argu, int line)
 {
-  char	**tab = NULL;
+  char	**tab;
 
   my_printf(1, "\t\t\t\t[Loading node]\n");
   if (out->all_node ||

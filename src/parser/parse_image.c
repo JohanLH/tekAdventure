@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Tue May  2 20:24:55 2017 johan
-** Last update Tue May 16 16:27:15 2017 johan
+** Last update Sun May 28 00:03:45 2017 johan
 */
 
 #include "printf.h"
@@ -40,7 +40,7 @@ static void	init_image(t_image *image)
 static int	parse_image2(char *temp, t_image *image,
 			     t_node *node, int line)
 {
-  char		**temp2 = NULL;
+  char		**temp2;
   t_parser	*parser;
 
   if ((temp2 = my_str_to_wordtab(temp, ':')) == NULL)

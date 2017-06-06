@@ -5,7 +5,7 @@
 ** Login   <johan@epitech.net>
 ** 
 ** Started on  Fri May  5 12:53:27 2017 johan
-** Last update Sun May 14 19:45:13 2017 johan
+** Last update Sat May 27 23:42:54 2017 johan
 */
 
 #include <stdlib.h>
@@ -45,9 +45,8 @@ int		add_data_graph(t_root *root, char *name1, char *name2)
   if ((room1 = find_elem_graph(root, name1)) == NULL
       || (room2 = find_elem_graph(root, name2)) == NULL
       || (link1 = malloc(sizeof(*link1))) == NULL
-      || (link2 = malloc(sizeof(*link2))) == NULL)
-    return (1);
-  if ((link1->name = my_strdup(name1)) == NULL
+      || (link2 = malloc(sizeof(*link2))) == NULL
+      || (link1->name = my_strdup(name1)) == NULL
       || (link2->name = my_strdup(name2)) == NULL)
     return (1);
   link1->room = room2;
